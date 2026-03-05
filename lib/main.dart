@@ -897,7 +897,7 @@ Container(
               ),
               _SkillContainer(
                 label: 'Firebase',
-                icon: FontAwesomeIcons.python,
+                icon: FontAwesomeIcons.database,
                 iconColor: const Color(0xFFFFCA28),
                 proficiency: 0.6,
                 description: 'Backend services',
@@ -1329,9 +1329,9 @@ class _PersonalSitePageState extends State<PersonalSitePage> {
                       shape: BoxShape.circle,
                       color: const Color(0xFFE5E7EB),
                       image: const DecorationImage(
-                        image: NetworkImage('https://via.placeholder.com/150'), // Add your photo
-                        fit: BoxFit.cover,
-                      ),
+                  image: AssetImage('assets/images/photo_6145403992587046632_y.jpg'),
+                  fit: BoxFit.cover,
+                ),
                     ),
                   ),
                 ],
@@ -3922,7 +3922,6 @@ class _InterestChip extends StatelessWidget {
 
 // Add this at the bottom of your file, after _InterestChip widget but before the final closing brace
 
-// ANIMATED PROFILE IMAGE WIDGET - OPTION 2
 class AnimatedProfileImage extends StatefulWidget {
   @override
   _AnimatedProfileImageState createState() => _AnimatedProfileImageState();
@@ -3943,17 +3942,11 @@ class _AnimatedProfileImageState extends State<AnimatedProfileImage>
     )..repeat(reverse: true);
 
     _pulseAnimation = Tween<double>(begin: 1.0, end: 1.05).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeInOut,
-      ),
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
 
     _rotateAnimation = Tween<double>(begin: -0.02, end: 0.02).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: Curves.easeInOut,
-      ),
+      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
   }
 
@@ -3979,7 +3972,7 @@ class _AnimatedProfileImageState extends State<AnimatedProfileImage>
                 shape: BoxShape.circle,
                 color: const Color(0xFFF3F4F6),
                 image: const DecorationImage(
-                  image: NetworkImage('https://via.placeholder.com/300'),
+                  image: AssetImage('assets/images/photo_6145403992587046632_y.jpg'),
                   fit: BoxFit.cover,
                 ),
                 boxShadow: [
@@ -3990,10 +3983,7 @@ class _AnimatedProfileImageState extends State<AnimatedProfileImage>
                     offset: const Offset(0, 8),
                   ),
                 ],
-                border: Border.all(
-                  color: Colors.white,
-                  width: 4,
-                ),
+                border: Border.all(color: Colors.white, width: 4),
               ),
             ),
           ),

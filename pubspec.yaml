@@ -17,6 +17,7 @@ dependencies:
   timeline_tile: ^2.0.0
   flutter_map: ^7.0.0
   latlong2: ^0.9.1
+  flutter_vector_icons: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -25,3 +26,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/images/
+    # Or specify the exact file
+    - assets\images\photo_6145403992587046632_y.jpg

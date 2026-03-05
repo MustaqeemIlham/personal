@@ -104,6 +104,12 @@
       "languageVersion": "3.8"
     },
     {
+      "name": "flutter_vector_icons",
+      "rootUri": "file:///C:/Users/ILHAM%20MUSTAQEEM/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_vector_icons-2.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_web_plugins",
       "rootUri": "file:///D:/src/flutter/packages/flutter_web_plugins",
       "packageUri": "lib/",

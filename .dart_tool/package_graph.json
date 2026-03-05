@@ -11,6 +11,7 @@
         "flutter",
         "flutter_map",
         "flutter_staggered_animations",
+        "flutter_vector_icons",
         "font_awesome_flutter",
         "google_fonts",
         "latlong2",
@@ -45,6 +46,13 @@
         "stream_channel",
         "test_api",
         "vector_math"
+      ]
+    },
+    {
+      "name": "flutter_vector_icons",
+      "version": "2.0.0",
+      "dependencies": [
+        "flutter"
       ]
     },
     {
