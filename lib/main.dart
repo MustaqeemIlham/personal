@@ -74,7 +74,7 @@ Container(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
       Text(
-        'NOMAD MUSTAQEEM',
+        'NOMADMUSTAQEEM',
         style: GoogleFonts.inter(
           fontSize: 20,
           fontWeight: FontWeight.bold,
@@ -167,7 +167,7 @@ Container(
                           child: AnimatedTextKit(
                            animatedTexts: [
   TypewriterAnimatedText(
-    'AI Developer & Software Engineer',
+    'AI & Software Developer',
     textStyle: GoogleFonts.inter(
       fontSize: 28,
       color: const Color(0xFF4B5563),
@@ -175,7 +175,7 @@ Container(
     speed: const Duration(milliseconds: 100),
   ),
     TypewriterAnimatedText(
-    'I Try Every Sport',
+    'Try Every Sport',
     textStyle: GoogleFonts.inter(
       fontSize: 28,
       color: const Color(0xFF4B5563),
@@ -183,7 +183,7 @@ Container(
     speed: const Duration(milliseconds: 100),
   ),
   TypewriterAnimatedText(
-    'Im Big Fan of Money',
+    'Big Fan of Money',
     textStyle: GoogleFonts.inter(
       fontSize: 28,
       color: const Color(0xFF4B5563),
@@ -199,7 +199,7 @@ Container(
     speed: const Duration(milliseconds: 100),
   ),
   TypewriterAnimatedText(
-    'Solo Travel Enthusiast',
+    'Solo Travel',
     textStyle: GoogleFonts.inter(
       fontSize: 28,
       color: const Color(0xFF4B5563),
@@ -627,9 +627,9 @@ Container(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _ProjectCard(
-                  title: 'Vegetable Crop Type Recommendation System',
-                  technologies: 'Flutter, Python, Random Forest, Scikit-Learn, Flask',
-                  description: 'Built a Random Forest model for crop price prediction (regression) and crop type prediction (classification). Integrated with mobile app using Flutter and Python backend.',
+                  title: 'Vegetable Crop Type Recommendation Application',
+                  technologies: 'Flutter, Python, Machine Learning, Scikit-Learn, Flask',
+                  description: 'Build a hybrid vegetables crop type recommendation application using ruled-based and Machine Learning (Random Forest). Built a Random Forest model for crop price prediction (regression) and integrated with mobile app using Flutter and Python backend.',
                   achievement: 'R² score: 94.23% | Accuracy: 95.67%',
                 ),
                 const SizedBox(width: 30),
@@ -650,7 +650,7 @@ Container(
                 _ProjectCard(
                   title: 'Techworldwide E-Commerce Website',
                   technologies: 'HTML, CSS, PHP, JavaScript, MySQL, Bootstrap',
-                  description: 'Developed group e-commerce system with product listings, cart, checkout, admin-login, and order management.',
+                  description: 'Developed group e-commerce system with product listings, cart, checkout, and order management.',
                   achievement: 'Full-stack e-commerce implementation',
                 ),
               ],
@@ -792,220 +792,344 @@ Container(
     ],
   ),
 ),
-            // Skills Section
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 60),
-              color: Colors.white,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Skills',
-                    style: GoogleFonts.inter(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                      color: const Color(0xFF111827),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Container(width: 60, height: 3, color: const Color(0xFF2563EB)),
-                  const SizedBox(height: 30),
-                  Wrap(
-                    spacing: 10,
-                    runSpacing: 10,
-                    children: [
-                      _SkillChip('Python', 0.7),
-                      _SkillChip('Flutter', 0.7),
-                      _SkillChip('C# / .NET', 0.5),
-                      _SkillChip('JavaScript', 0.5),
-                      _SkillChip('SQL Server', 0.6),
-                      _SkillChip('ASP.NET MVC', 0.5),
-                      _SkillChip('Html', 0.6),
-                      _SkillChip('Java', 0.5),
-                      _SkillChip('CSS', 6),
-                      _SkillChip('IoT / MQTT', 0.4),
-                      _SkillChip('Firebase', 0.6),
-                      _SkillChip('RapidMiner', 0.4),
-                      _SkillChip('Power BI', 0.5),
-                      _SkillChip('Flask', 0.4),
-                      _SkillChip('Git/GitHub', 0.5),
-                      _SkillChip('PHP', 0.5),
-                      _SkillChip('Machine Learning', 0.75),
-                      _SkillChip('Deep Learning', 0.60),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-
-            // Education Section
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 60),
-              color: const Color(0xFFF9FAFB),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Education',
-                    style: GoogleFonts.inter(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                      color: const Color(0xFF111827),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Container(width: 60, height: 3, color: const Color(0xFF2563EB)),
-                  const SizedBox(height: 40),
-                  _EducationCard(
-                    degree: 'Bachelor of Information System (Hons.) Intelligent System Engineering',
-                    institution: 'University Technology Mara, Shah Alam',
-                    date: 'Mar 2024 – Mar 2026',
-                    gpa: 'CGPA: 3.45 — GPA: 3.33',
-                    modules: 'Oracle Database, Data Visualization with R, Expert Systems, Machine Learning, Data Mining, Fuzzy Logic, Deep Learning, Optimization Algorithms, Intelligent Decision-Making Systems, Power BI, RapidMiner (NLP)',
-                  ),
-                  const SizedBox(height: 30),
-                  _EducationCard(
-                    degree: 'Diploma in Computer Science and Mathematics',
-                    institution: 'University Technology Mara, Kuala Terengganu',
-                    date: 'Oct 2021 – Oct 2023',
-                    gpa: 'CGPA: 3.52 (Dean\'s List)',
-                    modules: 'Algorithm and Data Structures, Object-Oriented Programming, Programming Paradigm, Database Concept, Visual Programming, Computer System',
-                  ),
-
-                    const SizedBox(height: 40),
-      Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 30),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.transparent,
-              const Color(0xFF2563EB).withOpacity(0.05),
-              const Color(0xFF2563EB).withOpacity(0.1),
-            ],
-          ),
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-            color: const Color(0xFF2563EB).withOpacity(0.2),
-            style: BorderStyle.solid,
-          ),
-        ),
-        child: Column(
-          children: [
-            // Animated dots or progress indicator
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(5, (index) {
-                return Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 4),
-                  width: 8,
-                  height: 8,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: index < 2 
-                        ? const Color(0xFF2563EB) 
-                        : const Color(0xFF2563EB).withOpacity(0.2),
-                  ),
-                );
-              }),
-            ),
-            const SizedBox(height: 20),
-            
-            // "More coming soon" text with icon
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.construction,
-                  size: 20,
-                  color: const Color(0xFF2563EB).withOpacity(0.7),
-                ),
-                const SizedBox(width: 10),
-                Text(
-                  'MORE EDUCATION COMING SOON',
-                  style: GoogleFonts.inter(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: const Color(0xFF2563EB).withOpacity(0.8),
-                    letterSpacing: 0.5,
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Icon(
-                  Icons.hourglass_empty,
-                  size: 20,
-                  color: const Color(0xFF2563EB).withOpacity(0.7),
-                ),
-              ],
-            ),
-            
-            const SizedBox(height: 10),
-            
-            // Subtle hint text
-            Text(
-              'Currently updating',
-              style: GoogleFonts.inter(
-                fontSize: 14,
-                color: const Color(0xFF6B7280),
-              ),
-            ),
-            
-            const SizedBox(height: 20),
-            
-            // "View Full Resume" button (optional)
-            // MouseRegion(
-            //   cursor: SystemMouseCursors.click,
-            //   child: GestureDetector(
-            //     onTap: () {
-            //       // Add your resume PDF link here
-            //       // launchUrl(Uri.parse('link_to_your_resume.pdf'));
-            //     },
-            //     child: Container(
-            //       padding: const EdgeInsets.symmetric(
-            //         horizontal: 24,
-            //         vertical: 12,
-            //       ),
-            //       decoration: BoxDecoration(
-            //         color: Colors.white,
-            //         borderRadius: BorderRadius.circular(30),
-            //         boxShadow: [
-            //           BoxShadow(
-            //             color: const Color(0xFF2563EB).withOpacity(0.1),
-            //             blurRadius: 10,
-            //             offset: const Offset(0, 4),
-            //           ),
-            //         ],
-            //       ),
-            //       child: Row(
-            //         mainAxisSize: MainAxisSize.min,
-            //         children: [
-            //           Text(
-            //             'VIEW FULL RESUME',
-            //             style: GoogleFonts.inter(
-            //               fontSize: 14,
-            //               fontWeight: FontWeight.w600,
-            //               color: const Color(0xFF2563EB),
-            //             ),
-            //           ),
-            //           const SizedBox(width: 8),
-            //           const Icon(
-            //             Icons.arrow_forward,
-            //             size: 16,
-            //             color: Color(0xFF2563EB),
-            //           ),
-            //         ],
-            //       ),
-            //     ),
-            //   ),
-            // ),
-          ],
+  // Skills Section
+Container(
+  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 60),
+  color: Colors.white,
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Text(
+        'Skills',
+        style: GoogleFonts.inter(
+          fontSize: 40,
+          fontWeight: FontWeight.bold,
+          color: const Color(0xFF111827),
         ),
       ),
-                ],
+      const SizedBox(height: 10),
+      Container(width: 60, height: 3, color: const Color(0xFF2563EB)),
+      const SizedBox(height: 40),
+      
+      // Centered 5-Column Grid
+      Center(
+        child: Container(
+          constraints: const BoxConstraints(maxWidth: 900), // Limit max width
+          child: GridView.count(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            crossAxisCount: 5, // 5 columns
+            crossAxisSpacing: 16,
+            mainAxisSpacing: 16,
+            childAspectRatio: 0.9, // Slightly taller than wide
+            children: [
+              _SkillContainer(
+                label: 'Python',
+                icon: FontAwesomeIcons.python,
+                iconColor: const Color(0xFF3776AB),
+                proficiency: 0.7,
+                description: 'Data Science, ML',
               ),
-            ),
+              _SkillContainer(
+                label: 'Flutter',
+                icon: FontAwesomeIcons.flutter,
+                iconColor: const Color(0xFF02569B),
+                proficiency: 0.7,
+                description: 'Cross-platform apps',
+              ),
+              _SkillContainer(
+                label: 'C#',
+                icon: FontAwesomeIcons.microsoft,
+                iconColor: const Color(0xFF512BD4),
+                proficiency: 0.3,
+                description: 'Enterprise dev',
+              ),
+              _SkillContainer(
+                label: 'JavaScript',
+                icon: FontAwesomeIcons.js,
+                iconColor: const Color(0xFFF7DF1E),
+                proficiency: 0.5,
+                description: 'Web development',
+              ),
+              _SkillContainer(
+                label: 'SQL Server',
+                icon: Icons.storage,
+                iconColor: const Color(0xFFCC2927),
+                proficiency: 0.5,
+                description: 'Database management',
+                useMaterialIcon: true,
+              ),
+              _SkillContainer(
+                label: 'ASP.NET MVC',
+                icon: FontAwesomeIcons.microsoft,
+                iconColor: const Color(0xFF512BD4),
+                proficiency: 0.3,
+                description: 'Web framework',
+              ),
+              _SkillContainer(
+                label: 'HTML',
+                icon: FontAwesomeIcons.html5,
+                iconColor: const Color(0xFFE34F26),
+                proficiency: 0.6,
+                description: 'Web structure',
+              ),
+              _SkillContainer(
+                label: 'Java',
+                icon: FontAwesomeIcons.java,
+                iconColor: const Color(0xFF007396),
+                proficiency: 0.5,
+                description: 'OOP programming',
+              ),
+              _SkillContainer(
+                label: 'CSS',
+                icon: FontAwesomeIcons.css3,
+                iconColor: const Color(0xFF1572B6),
+                proficiency: 0.5,
+                description: 'Styling & design',
+              ),
+              _SkillContainer(
+                label: 'IoT / MQTT',
+                icon: Icons.sensors,
+                iconColor: const Color(0xFF0288D1),
+                proficiency: 0.4,
+                description: 'Device communication',
+                useMaterialIcon: true,
+              ),
+              _SkillContainer(
+                label: 'Firebase',
+                icon: FontAwesomeIcons.python,
+                iconColor: const Color(0xFFFFCA28),
+                proficiency: 0.6,
+                description: 'Backend services',
+              ),
+              _SkillContainer(
+                label: 'RapidMiner',
+                icon: Icons.analytics,
+                iconColor: const Color(0xFFE64A19),
+                proficiency: 0.4,
+                description: 'Data mining',
+                useMaterialIcon: true,
+              ),
+              _SkillContainer(
+                label: 'Power BI',
+                icon: FontAwesomeIcons.chartBar,
+                iconColor: const Color(0xFFF2C811),
+                proficiency: 0.5,
+                description: 'Data visualization',
+              ),
+              _SkillContainer(
+                label: 'Flask',
+                icon: FontAwesomeIcons.flask,
+                iconColor: const Color(0xFF000000),
+                proficiency: 0.4,
+                description: 'Python web framework',
+                useMaterialIcon: true,
+              ),
+              _SkillContainer(
+                label: 'Git/GitHub',
+                icon: FontAwesomeIcons.gitAlt,
+                iconColor: const Color(0xFFF05032),
+                proficiency: 0.5,
+                description: 'Version control',
+              ),
+              _SkillContainer(
+                label: 'PHP',
+                icon: FontAwesomeIcons.php,
+                iconColor: const Color(0xFF777BB4),
+                proficiency: 0.4,
+                description: 'Server-side scripting',
+              ),
+              _SkillContainer(
+                label: 'Machine Learning',
+                icon: Icons.precision_manufacturing,
+                iconColor: const Color(0xFF7B1FA2),
+                proficiency: 0.75,
+                description: 'Algorithms & models',
+                useMaterialIcon: true,
+              ),
+              _SkillContainer(
+                label: 'Deep Learning',
+                icon: Icons.auto_awesome,
+                iconColor: const Color(0xFFD32F2F),
+                proficiency: 0.60,
+                description: 'Neural networks',
+                useMaterialIcon: true,
+              ),
+            ],
+          ),
+        ),
+      ),
+    ],
+  ),
+),
+      //       // Education Section
+      //       Container(
+      //         padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 60),
+      //         color: const Color(0xFFF9FAFB),
+      //         child: Column(
+      //           crossAxisAlignment: CrossAxisAlignment.start,
+      //           children: [
+      //             Text(
+      //               'Education',
+      //               style: GoogleFonts.inter(
+      //                 fontSize: 40,
+      //                 fontWeight: FontWeight.bold,
+      //                 color: const Color(0xFF111827),
+      //               ),
+      //             ),
+      //             const SizedBox(height: 10),
+      //             Container(width: 60, height: 3, color: const Color(0xFF2563EB)),
+      //             const SizedBox(height: 40),
+      //             _EducationCard(
+      //               degree: 'Bachelor of Information System (Hons.) Intelligent System Engineering',
+      //               institution: 'University Technology Mara, Shah Alam',
+      //               date: 'Mar 2024 – Mar 2026',
+      //               gpa: 'CGPA: 3.45 — GPA: 3.33',
+      //               modules: 'Oracle Database, Data Visualization with R, Expert Systems, Machine Learning, Data Mining, Fuzzy Logic, Deep Learning, Optimization Algorithms, Intelligent Decision-Making Systems, Power BI, RapidMiner (NLP)',
+      //             ),
+      //             const SizedBox(height: 30),
+      //             _EducationCard(
+      //               degree: 'Diploma in Computer Science and Mathematics',
+      //               institution: 'University Technology Mara, Kuala Terengganu',
+      //               date: 'Oct 2021 – Oct 2023',
+      //               gpa: 'CGPA: 3.52 (Dean\'s List)',
+      //               modules: 'Algorithm and Data Structures, Object-Oriented Programming, Programming Paradigm, Database Concept, Visual Programming, Computer System',
+      //             ),
+
+      //               const SizedBox(height: 40),
+      // Container(
+      //   width: double.infinity,
+      //   padding: const EdgeInsets.symmetric(vertical: 30),
+      //   decoration: BoxDecoration(
+      //     gradient: LinearGradient(
+      //       begin: Alignment.topCenter,
+      //       end: Alignment.bottomCenter,
+      //       colors: [
+      //         Colors.transparent,
+      //         const Color(0xFF2563EB).withOpacity(0.05),
+      //         const Color(0xFF2563EB).withOpacity(0.1),
+      //       ],
+      //     ),
+      //     borderRadius: BorderRadius.circular(16),
+      //     border: Border.all(
+      //       color: const Color(0xFF2563EB).withOpacity(0.2),
+      //       style: BorderStyle.solid,
+      //     ),
+      //   ),
+      //   child: Column(
+      //     children: [
+      //       // Animated dots or progress indicator
+      //       Row(
+      //         mainAxisAlignment: MainAxisAlignment.center,
+      //         children: List.generate(5, (index) {
+      //           return Container(
+      //             margin: const EdgeInsets.symmetric(horizontal: 4),
+      //             width: 8,
+      //             height: 8,
+      //             decoration: BoxDecoration(
+      //               shape: BoxShape.circle,
+      //               color: index < 2 
+      //                   ? const Color(0xFF2563EB) 
+      //                   : const Color(0xFF2563EB).withOpacity(0.2),
+      //             ),
+      //           );
+      //         }),
+      //       ),
+      //       const SizedBox(height: 20),
+            
+      //       // "More coming soon" text with icon
+      //       Row(
+      //         mainAxisAlignment: MainAxisAlignment.center,
+      //         children: [
+      //           Icon(
+      //             Icons.construction,
+      //             size: 20,
+      //             color: const Color(0xFF2563EB).withOpacity(0.7),
+      //           ),
+      //           const SizedBox(width: 10),
+      //           Text(
+      //             'MORE EDUCATION COMING SOON',
+      //             style: GoogleFonts.inter(
+      //               fontSize: 16,
+      //               fontWeight: FontWeight.w600,
+      //               color: const Color(0xFF2563EB).withOpacity(0.8),
+      //               letterSpacing: 0.5,
+      //             ),
+      //           ),
+      //           const SizedBox(width: 10),
+      //           Icon(
+      //             Icons.hourglass_empty,
+      //             size: 20,
+      //             color: const Color(0xFF2563EB).withOpacity(0.7),
+      //           ),
+      //         ],
+      //       ),
+            
+      //       const SizedBox(height: 10),
+            
+      //       // Subtle hint text
+      //       Text(
+      //         'Currently updating',
+      //         style: GoogleFonts.inter(
+      //           fontSize: 14,
+      //           color: const Color(0xFF6B7280),
+      //         ),
+      //       ),
+            
+      //       const SizedBox(height: 20),
+            
+      //       // "View Full Resume" button (optional)
+      //       // MouseRegion(
+      //       //   cursor: SystemMouseCursors.click,
+      //       //   child: GestureDetector(
+      //       //     onTap: () {
+      //       //       // Add your resume PDF link here
+      //       //       // launchUrl(Uri.parse('link_to_your_resume.pdf'));
+      //       //     },
+      //       //     child: Container(
+      //       //       padding: const EdgeInsets.symmetric(
+      //       //         horizontal: 24,
+      //       //         vertical: 12,
+      //       //       ),
+      //       //       decoration: BoxDecoration(
+      //       //         color: Colors.white,
+      //       //         borderRadius: BorderRadius.circular(30),
+      //       //         boxShadow: [
+      //       //           BoxShadow(
+      //       //             color: const Color(0xFF2563EB).withOpacity(0.1),
+      //       //             blurRadius: 10,
+      //       //             offset: const Offset(0, 4),
+      //       //           ),
+      //       //         ],
+      //       //       ),
+      //       //       child: Row(
+      //       //         mainAxisSize: MainAxisSize.min,
+      //       //         children: [
+      //       //           Text(
+      //       //             'VIEW FULL RESUME',
+      //       //             style: GoogleFonts.inter(
+      //       //               fontSize: 14,
+      //       //               fontWeight: FontWeight.w600,
+      //       //               color: const Color(0xFF2563EB),
+      //       //             ),
+      //       //           ),
+      //       //           const SizedBox(width: 8),
+      //       //           const Icon(
+      //       //             Icons.arrow_forward,
+      //       //             size: 16,
+      //       //             color: Color(0xFF2563EB),
+      //       //           ),
+      //       //         ],
+      //       //       ),
+      //       //     ),
+      //       //   ),
+      //       // ),
+      //     ],
+      //   ),
+      // ),
+      //           ],
+      //         ),
+      //       ),
 
             // // Extracurricular Section
             // Container(
@@ -1140,7 +1264,7 @@ class _PersonalSitePageState extends State<PersonalSitePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'NOMAD MUSTAQEEM',
+                    'NOMADMUSTAQEEM',
                     style: GoogleFonts.inter(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -1338,7 +1462,7 @@ class _PersonalSitePageState extends State<PersonalSitePage> {
                                   _PersonalDetailCard(
                                     icon: Icons.language,
                                     label: 'Languages',
-                                    value: 'Malay (Native), English (Intermidiate), German (Basic)',
+                                    value: 'Malay (Native), English (Intermediate), German (Basic)',
                                   ),
                                  _PersonalDetailCard(
                                     icon: Icons.location_on,
@@ -1353,7 +1477,7 @@ class _PersonalSitePageState extends State<PersonalSitePage> {
                                   _PersonalDetailCard(
                                     icon: Icons.work,
                                     label: 'Current Role',
-                                    value: '-',
+                                    value: 'None (Looking for Internship Postition)',
                                   ),
                                   _PersonalDetailCard(
                                     icon: Icons.favorite,
@@ -1407,7 +1531,7 @@ class _PersonalSitePageState extends State<PersonalSitePage> {
                                           ),
                                           const SizedBox(height: 4),
                                           Text(
-                                            'Explore each country on earth',
+                                            'Explore Each Country',
                                             style: GoogleFonts.inter(
                                               fontSize: 14,
                                               color: const Color(0xFF4B5563),
@@ -1469,23 +1593,24 @@ class _PersonalSitePageState extends State<PersonalSitePage> {
                                 frontContent: _SportFrontCard(
                                   title: 'Running',
                                   icon: Icons.directions_run,
-                                  description: 'I started running to stay fit, but it became a passion. I do both regular road running and trail running. The trails call to me — the mud, the hills, the forest. My first big challenge is coming up: a 30km+ trail run in Negeri Sembilan, July 2026.',
+                                  description: 'I started running to stay fit, but it became a passion. I do both regular road running and trail running. The trails call to me the mud, the hills, the forest. My first big challenge is coming up: a 30km+ trail run in Negeri Sembilan, July 2026.',
                                   achievements: [
-                                    '🎽 Regular runner: 10-15km weekly',
-                                    '🏃 Trail runner: Exploring forest trails',
+                                    '🎽 Regular runner: 15-25km weekly',
                                     '🌲 First trail event: July 2026 (30km+)',
                                     '📍 Negeri Sembilan trail run (upcoming)',
-                                    '⏱️ 5km PB: 24 minutes',
+                                    '⏱️ 5km PB: 32 minutes',
+                                    
                                   ],
-                                  stats: 'Road & Trail | 30km+ event soon',
+                                 stats: '30++ km Run',
+
                                 ),
                                 backContent: _SportBackCard(
                                   title: 'Running Gallery',
                                   images: [
-                                    'https://images.unsplash.com/photo-1476480862126-209bfaa8edc4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-                                    'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-                                    'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-                                    'https://images.unsplash.com/photo-1530549387789-4c1017266635?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
+                                    // 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
+                                    // 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
+                                    // 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
+                                    // 'https://images.unsplash.com/photo-1530549387789-4c1017266635?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
                                   ],
                                   caption: 'Training runs, trail adventures, and gearing up',
                                 ),
@@ -1508,21 +1633,19 @@ class _PersonalSitePageState extends State<PersonalSitePage> {
                                   icon: Icons.directions_bike,
                                   description: 'Two wheels, two terrains. I ride both mountain bike (MTB) on rough trails and road bike on highways. The freedom of cycling keeps me going. Have a few achievements in local rides and events.',
                                   achievements: [
-                                    '🚵 MTB: Conquered Bukit Cherakah trails',
-                                    '🚴 Road bike: Century ride (100km+)',
-                                    '🏆 Local event finisher: Bentong - Genting',
-                                    '⛰️ Climbed Fraser Hill on bike',
-                                    '🏅 Weekend Warrior Club member',
+                                    '🚵 MTB: More than 10++ Jamboree/Event Participant',
+                                    '🚴 Road bike:  More than 5++ Event Participant',
+                                    '🏅 SS Gelora Cycling Team',
                                   ],
                                   stats: 'MTB & Road Bike | 100km+ rides',
                                 ),
                                 backContent: _SportBackCard(
                                   title: 'Biking Gallery',
                                   images: [
-                                    'https://images.unsplash.com/photo-1511994298241-608e28f14fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-                                    'https://images.unsplash.com/photo-1541625602330-2277a4c46182?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-                                    'https://images.unsplash.com/photo-1571066811602-716dc42e89c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-                                    'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
+                                    // 'https://images.unsplash.com/photo-1511994298241-608e28f14fde?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
+                                    // 'https://images.unsplash.com/photo-1541625602330-2277a4c46182?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
+                                    // 'https://images.unsplash.com/photo-1571066811602-716dc42e89c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
+                                    // 'https://images.unsplash.com/photo-1527529482837-4698179dc6ce?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
                                   ],
                                   caption: 'Mountain trails, road adventures, and cycling events',
                                 ),
@@ -1543,23 +1666,22 @@ class _PersonalSitePageState extends State<PersonalSitePage> {
                                 frontContent: _SportFrontCard(
                                   title: 'Surfing',
                                   icon: Icons.waves,
-                                  description: 'The ocean is my second home. Every monsoon season in Terengganu, I hit the waves. Still learning, still improving. No achievements yet — just the joy of catching a good wave and the endless pursuit of better skills.',
+                                  description: 'Every monsoon season in Tioman, I hit the waves. Still learning, still improving but rarely. No achievements yet — just the joy of catching a good wave and the endless pursuit of better skills.',
                                   achievements: [
-                                    '🏄‍♂️ Surfing since 2022',
-                                    '🌊 Monsoon season regular at Terengganu',
+                                    '🏄‍♂️ Surfing since 2019',
+                                    '🌊 Monsoon season regular at Tioman',
                                     '🔄 Working on: Pop-up & wave selection',
                                     '🎯 Goal: Ride unbroken waves consistently',
-                                    '🤙 Beach clean-up volunteer',
                                   ],
-                                  stats: 'Beginner → Intermediate | Monsoon surfer',
+                                  stats: 'Beginner | Monsoon surfer',
                                 ),
                                 backContent: _SportBackCard(
                                   title: 'Surfing Gallery',
                                   images: [
-                                    'https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-                                    'https://images.unsplash.com/photo-1623557366923-3f981e3f7f8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-                                    'https://images.unsplash.com/photo-1625711147529-e2ec97cf9da5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-                                    'https://images.unsplash.com/photo-1516939884455-1445c8652f83?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
+                                    // 'https://images.unsplash.com/photo-1502680390469-be75c86b636f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
+                                    // 'https://images.unsplash.com/photo-1623557366923-3f981e3f7f8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
+                                    // 'https://images.unsplash.com/photo-1625711147529-e2ec97cf9da5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
+                                    // 'https://images.unsplash.com/photo-1516939884455-1445c8652f83?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
                                   ],
                                   caption: 'Monsoon waves, practice sessions, and beach life',
                                 ),
@@ -1585,18 +1707,17 @@ class _PersonalSitePageState extends State<PersonalSitePage> {
                                     '🌏 Solo traveller since 2022',
                                     '🇹🇭 Thailand: Krabi, Phuket, Ratchaburi, Hatyai, Koh Lipe',
                                     '🇲🇾 Malaysia: Tioman, Langkawi, Perhentian, Pangkor, Kudat',
-                                    '🇮🇩 Indonesia: Jakarta, Bandung',
                                     '🏝️ Island collector: 10+ islands visited',
                                   ],
-                                  stats: 'Solo traveller | 3 countries | 15+ destinations',
+                                  stats: 'Solo traveller | 2 countries | 15+ destinations (will be updating)',
                                 ),
                                 backContent: _SportBackCard(
                                   title: 'Travel Gallery',
                                   images: [
-                                    'https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-                                    'https://images.unsplash.com/photo-1507525425510-1f2d39962a4c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-                                    'https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-                                    'https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
+                                    // 'https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
+                                    // 'https://images.unsplash.com/photo-1507525425510-1f2d39962a4c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
+                                    // 'https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
+                                    // 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
                                   ],
                                   caption: 'Solo adventures, island escapes, and travel memories',
                                 ),
@@ -1717,7 +1838,7 @@ Expanded(
                   date: 'July 2026',
                   duration: '30km+',
                   location: 'Negeri Sembilan',
-                  imageUrl: 'https://images.unsplash.com/photo-1551698618-1dfe5d97d256?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
+                  imageUrl: 'https://www.trainingpeaks.com/blog/5-tips-for-technical-trail-running-and-racing/',
                   description: 'My first official trail running event! Training hard for this 30km+ challenge through the beautiful trails of Negeri Sembilan.',
                   highlights: const [
                     'Weekend trail runs',
@@ -1726,7 +1847,7 @@ Expanded(
                     'Goal: Finish strong',
                   ],
                   status: 'Training Phase',
-                  progress: 0.4,
+                  progress: 0.3,
                   color: const Color(0xFF10B981),
                 ),
                 
@@ -1759,7 +1880,7 @@ Expanded(
                     ],
                   ),
                   child: _ExpeditionDetailCard(
-                    title: 'Eurasian Overland Expedition',
+                    title: 'Eurasian Overland Expedition (Will Be Updating)',
                     subtitle: 'Malaysia → Mongolia → China → Kyrgyzstan → Pakistan → Bosnia',
                     duration: 'Q3 2028 - Q3 2029',
                     imageUrl: 'https://images.unsplash.com/photo-1526495124232-a04e1849168c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
@@ -3271,6 +3392,137 @@ class _SkillChip extends StatelessWidget {
   }
 }
 
+class _SkillContainer extends StatelessWidget {
+  final String label;
+  final dynamic icon;
+  final Color iconColor;
+  final double proficiency;
+  final String description;
+  final bool useMaterialIcon;
+
+  const _SkillContainer({
+    required this.label,
+    required this.icon,
+    required this.iconColor,
+    required this.proficiency,
+    required this.description,
+    this.useMaterialIcon = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Tooltip(
+      message: '${(proficiency * 100).toInt()}% proficient',
+      preferBelow: false,
+      verticalOffset: 20,
+      textStyle: GoogleFonts.inter(
+        fontSize: 12,
+        fontWeight: FontWeight.w600,
+        color: Colors.white,
+      ),
+      decoration: BoxDecoration(
+        color: iconColor,
+        borderRadius: BorderRadius.circular(8),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(14),
+          border: Border.all(color: const Color(0xFFE5E7EB)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.03),
+              spreadRadius: 1,
+              blurRadius: 4,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(14),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              // Icon
+              Container(
+                width: 48,
+                height: 48,
+                decoration: BoxDecoration(
+                  color: iconColor.withOpacity(0.1),
+                  shape: BoxShape.circle,
+                ),
+                child: Center(
+                  child: useMaterialIcon
+                      ? Icon(icon as IconData, size: 24, color: iconColor)
+                      : FaIcon(icon as IconData, size: 22, color: iconColor),
+                ),
+              ),
+              
+              const SizedBox(height: 12),
+              
+              // Label
+              Text(
+                label,
+                style: GoogleFonts.inter(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: const Color(0xFF111827),
+                ),
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              
+              const SizedBox(height: 4),
+              
+              // Description
+              Text(
+                description,
+                style: GoogleFonts.inter(
+                  fontSize: 10,
+                  color: const Color(0xFF6B7280),
+                ),
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              
+              const SizedBox(height: 8),
+              
+              // Proficiency dots
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ...List.generate(5, (index) {
+                    final filled = index < (proficiency * 5).round();
+                    return Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 2),
+                      width: 8,
+                      height: 8,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: filled ? iconColor.withOpacity(0.7) : const Color(0xFFE5E7EB),
+                      ),
+                    );
+                  }),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _EducationCard extends StatelessWidget {
   final String degree;
   final String institution;
@@ -4010,12 +4262,12 @@ class _ModernAdventureCard extends StatelessWidget {
             borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
             child: Stack(
               children: [
-                Image.network(
-                  imageUrl,
-                  height: 120,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                ),
+                // Image.network(
+                //   imageUrl,
+                //   height: 120,
+                //   width: double.infinity,
+                //   fit: BoxFit.cover,
+                // ),
                 Container(
                   height: 120,
                   decoration: BoxDecoration(
