@@ -263,26 +263,26 @@ _SocialIconButton(
 const SizedBox(width: 15),
 _SocialIconButton(
   icon: FontAwesomeIcons.instagram,
-  url: 'https://www.instagram.com/mustaqeyym?igsh=MTNrZDM3NjB5ZTZzZg%3D%3D&utm_source=qr', // Replace with your Instagram username
-  color: const Color(0xFFE4405F), // Instagram's brand color
+  url: 'https://www.instagram.com/mustaqeyym?igsh=MTNrZDM3NjB5ZTZzZg%3D%3D&utm_source=qr', 
+  color: const Color(0xFFE4405F), 
 ),
 const SizedBox(width: 15),
 _SocialIconButton(
   icon: FontAwesomeIcons.youtube,
-  url: 'https://youtube.com/@mustnomad?si=sXfdFmEkofJTcfQh', // Replace with your YouTube channel
-  color: const Color(0xFFFF0000), // YouTube's brand red
+  url: 'https://youtube.com/@mustnomad?si=sXfdFmEkofJTcfQh', 
+  color: const Color(0xFFFF0000), 
 ),
 const SizedBox(width: 15),
 _SocialIconButton(
   icon: FontAwesomeIcons.threads,
-  url: 'https://www.threads.com/@mustaqeyym?igshid=NTc4MTIwNjQ2YQ==', // Replace with your Threads username
-  color: const Color(0xFF000000), // Threads uses black
+  url: 'https://www.threads.com/@mustaqeyym?igshid=NTc4MTIwNjQ2YQ==', 
+  color: const Color(0xFF000000), 
 ),
 const SizedBox(width: 15),
 _SocialIconButton(
   icon: FontAwesomeIcons.tiktok,
-  url: 'https://www.tiktok.com/@.mqym?_r=1&_t=ZS-94IAjzgPl3d', // Replace with your TikTok username
-  color: const Color(0xFF000000), // TikTok typically uses black
+  url: 'https://www.tiktok.com/@.mqym?_r=1&_t=ZS-94IAjzgPl3d', 
+  color: const Color(0xFF000000), 
 ),
 const SizedBox(width: 15),
 _SocialIconButton(
@@ -296,12 +296,12 @@ _SocialIconButton(
                     ),
                   ),
                   
-            // ... your text content stays the same ...
+            
           ],
         ),
       ),
       
-      // 👇 REPLACE WITH THIS ANIMATED WIDGET
+      
        AnimatedProfileImage(),
     ],
   ),
@@ -522,7 +522,7 @@ Container(
             
             const SizedBox(height: 10),
             
-            // Subtle hint text
+            
             Text(
               'Currently updating with new roles and achievements',
               style: GoogleFonts.inter(
@@ -894,7 +894,7 @@ Container(
         ),
         child: Column(
           children: [
-            // Animated dots or progress indicator
+            // progress indicator
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(5, (index) {
@@ -1110,7 +1110,7 @@ Container(
 
 
 
-// Personal Site Page - Your Personal Space
+// Personal Site Page
 class PersonalSitePage extends StatefulWidget {
   const PersonalSitePage({super.key});
 
@@ -1706,7 +1706,7 @@ Expanded(
           
           const SizedBox(width: 30),
           
-          // RIGHT COLUMN: Adventure Details (60% width)
+          // RIGHT COLUMN: Adventure Details
           Expanded(
             flex: 6,
             child: Column(
@@ -2197,7 +2197,7 @@ class _SportBackCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Title
+          
           Text(
             title,
             style: GoogleFonts.inter(
@@ -2591,7 +2591,7 @@ class _ActivityCard extends StatelessWidget {
               ),
             ),
             
-            // Achievements Section (shown when selected)
+            // Achievements Section
             if (isSelected)
               Expanded(
                 flex: 2,
