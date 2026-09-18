@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../../app/theme/app_colors.dart';
 
 class ContactInfo extends StatelessWidget {
   final IconData icon;
@@ -14,11 +15,19 @@ class ContactInfo extends StatelessWidget {
       cursor: onTap != null ? SystemMouseCursors.click : SystemMouseCursors.basic,
       child: GestureDetector(
         onTap: onTap,
-        child: Column(
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(icon, color: Colors.white, size: 28),
-            const SizedBox(height: 6),
-            Text(info, style: GoogleFonts.inter(color: Colors.white)),
+            Icon(icon, color: AppColors.textSecondary, size: 16),
+            const SizedBox(width: 8),
+            Text(
+              info,
+              style: GoogleFonts.notoSansJp(
+                fontSize: 13.5,
+                color: AppColors.charcoal,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
           ],
         ),
       ),

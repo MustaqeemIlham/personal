@@ -1,5 +1,12 @@
-import 'package:flutter/foundation.dart';
 import 'models/project_model.dart';
+import 'models/education_model.dart';
+
+final List<Education> education = [
+  const Education(
+    institution: 'Universiti Teknologi MARA (UiTM)',
+    degree: 'BIS (Hons.) Information Systems Engineering — Intelligent System Engineering',
+  ),
+];
 
 final List<Project> projects = [
   const Project(
