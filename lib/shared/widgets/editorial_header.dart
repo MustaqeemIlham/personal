@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../app/theme/app_colors.dart';
+import 'content_container.dart';
 
 class EditorialHeader extends StatelessWidget {
   final String handle;
@@ -23,16 +24,19 @@ class EditorialHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 12),
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: AppColors.background,
         border: Border(bottom: BorderSide(color: AppColors.border, width: 1)),
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Expanded(
-            child: Column(
+      child: ContentContainer(
+        verticalPadding: const EdgeInsets.symmetric(vertical: 16),
+        child: Wrap(
+          alignment: WrapAlignment.spaceBetween,
+          runSpacing: 10,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
@@ -65,29 +69,31 @@ class EditorialHeader extends StatelessWidget {
                 ),
               ],
             ),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Row(
-                children: [
-                  _SmallNavItem(label: 'PORTFOLIO', index: '01', onTap: onPortfolioTap),
-                  const SizedBox(width: 8),
-                  _SmallNavItem(label: 'PERSONAL', index: '02', onTap: onPersonalTap),
-                ],
-              ),
-              const SizedBox(height: 6),
-              Text(
-                statusLine,
-                style: GoogleFonts.notoSansJp(
-                  fontSize: 10,
-                  color: AppColors.textSecondary,
-                  letterSpacing: 0.7,
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    _SmallNavItem(label: 'PORTFOLIO', index: '01', onTap: onPortfolioTap),
+                    const SizedBox(width: 8),
+                    _SmallNavItem(label: 'PERSONAL', index: '02', onTap: onPersonalTap),
+                  ],
                 ),
-              ),
-            ],
-          ),
-        ],
+                const SizedBox(height: 6),
+                Text(
+                  statusLine,
+                  style: GoogleFonts.notoSansJp(
+                    fontSize: 10,
+                    color: AppColors.textSecondary,
+                    letterSpacing: 0.7,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

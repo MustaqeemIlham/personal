@@ -14,16 +14,16 @@ import '../app/theme/app_theme.dart';
 import '../shared/widgets/editorial_header.dart';
 import '../shared/widgets/editorial_section_header.dart';
 import '../shared/widgets/thin_divider.dart';
-import '../shared/widgets/nav_button.dart';
 import '../shared/widgets/social_icon_button.dart';
-import '../shared/widgets/experience_card.dart';
 // removed: project_card import is unused after editorial refactor
 import '../shared/widgets/project_entry.dart';
-import '../shared/widgets/retro_project_device.dart';
 import '../data/portfolio_data.dart';
-import '../shared/widgets/skill_container.dart';
 import '../shared/widgets/contact_info.dart';
-import '../shared/widgets/animated_profile_image.dart';
+import '../shared/widgets/content_container.dart';
+import '../shared/widgets/site_nav.dart';
+import '../shared/widgets/site_footer.dart';
+import '../shared/widgets/skill_group.dart';
+import '../shared/widgets/education_entry.dart';
 
 // Legacy entrypoint removed — use the new `lib/main.dart` runner.
 void legacyMain() {}
@@ -92,469 +92,395 @@ class PortfolioHomePage extends StatefulWidget {
 
 class _PortfolioHomePageState extends State<PortfolioHomePage> {
   final ScrollController _scrollController = ScrollController();
+  final GlobalKey _aboutKey = GlobalKey();
+  final GlobalKey _skillsKey = GlobalKey();
+  final GlobalKey _educationKey = GlobalKey();
+  final GlobalKey _projectsKey = GlobalKey();
+  final GlobalKey _contactKey = GlobalKey();
+
+  void _scrollToSection(GlobalKey key) {
+    final targetContext = key.currentContext;
+    if (targetContext != null) {
+      Scrollable.ensureVisible(
+        targetContext,
+        duration: const Duration(milliseconds: 450),
+        curve: Curves.easeInOut,
+        alignment: 0.04,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    final displayText = Theme.of(context).textTheme.displayLarge;
-    final bodyText = Theme.of(context).textTheme.bodyLarge;
-
     return Scaffold(
       backgroundColor: AppColors.background,
       body: SingleChildScrollView(
         controller: _scrollController,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Editorial header (replaces previous nav container)
+            // Small, understated site header (name + short intro + page switch)
             EditorialHeader(
               handle: 'NOMADMUSTAQEEM',
-              name: '03 North 1st Street',
-              subtitle: 'Love + Power',
+              name: 'Ilham Mustaqeem',
+              subtitle: 'AI & Software Developer',
               statusLine: 'AI Developer • Open to projects',
               onPortfolioTap: () {},
               onPersonalTap: () {
                 Navigator.pushNamed(context, '/personal');
               },
             ),
-            Container(
-  height: 500,
-  padding: const EdgeInsets.symmetric(horizontal: 40),
-  child: Row(
-    children: [
-      Expanded(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-                         
+            // In-page text navigation
+            SiteNav(
+              items: [
+                SiteNavItem(label: 'About', onTap: () => _scrollToSection(_aboutKey)),
+                SiteNavItem(label: 'Skills', onTap: () => _scrollToSection(_skillsKey)),
+                SiteNavItem(label: 'Education', onTap: () => _scrollToSection(_educationKey)),
+                SiteNavItem(label: 'Projects', onTap: () => _scrollToSection(_projectsKey)),
+                SiteNavItem(label: 'Contact', onTap: () => _scrollToSection(_contactKey)),
+              ],
+            ),
+
+            // Compact introduction — no large hero, just a short greeting block
+            ContentContainer(
+              verticalPadding: const EdgeInsets.symmetric(vertical: 36),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
                   Expanded(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           'Hi, the name\'s',
-                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontSize: 24,
+                          style: GoogleFonts.notoSansJp(
+                            fontSize: 14,
                             color: AppColors.textSecondary,
-                            letterSpacing: 0.3,
-                          ) ?? const TextStyle(color: AppColors.textSecondary),
+                            letterSpacing: 0.4,
+                          ),
                         ),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 6),
                         Text(
                           'Ilham Mustaqeem',
-                          style: displayText?.copyWith(
-                            fontSize: 64,
+                          style: GoogleFonts.notoSerifJp(
+                            fontSize: 30,
                             fontWeight: FontWeight.w700,
                             color: AppColors.charcoal,
-                            height: 1.0,
-                          ) ?? const TextStyle(color: AppColors.charcoal),
+                            height: 1.1,
+                          ),
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 10),
                         SizedBox(
-                          height: 50,
+                          height: 24,
                           child: AnimatedTextKit(
-                           animatedTexts: [
-  TypewriterAnimatedText(
-    'AI & Software Developer',
-    textStyle: bodyText?.copyWith(
-      fontSize: 28,
-      color: AppColors.textSecondary,
-      fontWeight: FontWeight.w600,
-    ) ?? const TextStyle(color: AppColors.textSecondary),
-    speed: const Duration(milliseconds: 100),
-  ),
-    TypewriterAnimatedText(
-    'Try Every Sport',
-    textStyle: bodyText?.copyWith(
-      fontSize: 28,
-      color: AppColors.textSecondary,
-      fontWeight: FontWeight.w600,
-    ) ?? const TextStyle(color: AppColors.textSecondary),
-    speed: const Duration(milliseconds: 100),
-  ),
-  TypewriterAnimatedText(
-    'Big Fan of Money',
-    textStyle: bodyText?.copyWith(
-      fontSize: 28,
-      color: AppColors.textSecondary,
-      fontWeight: FontWeight.w600,
-    ) ?? const TextStyle(color: AppColors.textSecondary),
-    speed: const Duration(milliseconds: 100),
-  ),
-    TypewriterAnimatedText(
-    'Bikepacking & Backpacking Explorer',
-    textStyle: bodyText?.copyWith(
-      fontSize: 28,
-      color: AppColors.textSecondary,
-      fontWeight: FontWeight.w600,
-    ) ?? const TextStyle(color: AppColors.textSecondary),
-    speed: const Duration(milliseconds: 100),
-  ),
-  TypewriterAnimatedText(
-    'Solo Travel',
-    textStyle: bodyText?.copyWith(
-      fontSize: 28,
-      color: AppColors.textSecondary,
-      fontWeight: FontWeight.w600,
-    ) ?? const TextStyle(color: AppColors.textSecondary),
-    speed: const Duration(milliseconds: 100),
-  ),
-  TypewriterAnimatedText(
-    'Runner & Trail Runner',
-    textStyle: bodyText?.copyWith(
-      fontSize: 28,
-      color: AppColors.textSecondary,
-      fontWeight: FontWeight.w600,
-    ) ?? const TextStyle(color: AppColors.textSecondary),
-    speed: const Duration(milliseconds: 100),
-  ),
-  TypewriterAnimatedText(
-    'Surfing Adventurer',
-    textStyle: bodyText?.copyWith(
-      fontSize: 28,
-      color: AppColors.textSecondary,
-      fontWeight: FontWeight.w600,
-    ) ?? const TextStyle(color: AppColors.textSecondary),
-    speed: const Duration(milliseconds: 100),
-  ),
-  TypewriterAnimatedText(
-    'Mobile & Web Application Developer',
-    textStyle: bodyText?.copyWith(
-      fontSize: 28,
-      color: AppColors.textSecondary,
-      fontWeight: FontWeight.w600,
-    ) ?? const TextStyle(color: AppColors.textSecondary),
-    speed: const Duration(milliseconds: 100),
-  ),
-  TypewriterAnimatedText(
-    'Data Analytics Enthusiast',
-    textStyle: bodyText?.copyWith(
-      fontSize: 28,
-      color: AppColors.textSecondary,
-      fontWeight: FontWeight.w600,
-    ) ?? const TextStyle(color: AppColors.textSecondary),
-    speed: const Duration(milliseconds: 100),
-  ),
-
-],
+                            animatedTexts: [
+                              TypewriterAnimatedText(
+                                'AI & Software Developer',
+                                textStyle: GoogleFonts.notoSansJp(fontSize: 15, color: AppColors.textSecondary, fontWeight: FontWeight.w600),
+                                speed: const Duration(milliseconds: 100),
+                              ),
+                              TypewriterAnimatedText(
+                                'Try Every Sport',
+                                textStyle: GoogleFonts.notoSansJp(fontSize: 15, color: AppColors.textSecondary, fontWeight: FontWeight.w600),
+                                speed: const Duration(milliseconds: 100),
+                              ),
+                              TypewriterAnimatedText(
+                                'Big Fan of Money',
+                                textStyle: GoogleFonts.notoSansJp(fontSize: 15, color: AppColors.textSecondary, fontWeight: FontWeight.w600),
+                                speed: const Duration(milliseconds: 100),
+                              ),
+                              TypewriterAnimatedText(
+                                'Bikepacking & Backpacking Explorer',
+                                textStyle: GoogleFonts.notoSansJp(fontSize: 15, color: AppColors.textSecondary, fontWeight: FontWeight.w600),
+                                speed: const Duration(milliseconds: 100),
+                              ),
+                              TypewriterAnimatedText(
+                                'Solo Travel',
+                                textStyle: GoogleFonts.notoSansJp(fontSize: 15, color: AppColors.textSecondary, fontWeight: FontWeight.w600),
+                                speed: const Duration(milliseconds: 100),
+                              ),
+                              TypewriterAnimatedText(
+                                'Runner & Trail Runner',
+                                textStyle: GoogleFonts.notoSansJp(fontSize: 15, color: AppColors.textSecondary, fontWeight: FontWeight.w600),
+                                speed: const Duration(milliseconds: 100),
+                              ),
+                              TypewriterAnimatedText(
+                                'Surfing Adventurer',
+                                textStyle: GoogleFonts.notoSansJp(fontSize: 15, color: AppColors.textSecondary, fontWeight: FontWeight.w600),
+                                speed: const Duration(milliseconds: 100),
+                              ),
+                              TypewriterAnimatedText(
+                                'Mobile & Web Application Developer',
+                                textStyle: GoogleFonts.notoSansJp(fontSize: 15, color: AppColors.textSecondary, fontWeight: FontWeight.w600),
+                                speed: const Duration(milliseconds: 100),
+                              ),
+                              TypewriterAnimatedText(
+                                'Data Analytics Enthusiast',
+                                textStyle: GoogleFonts.notoSansJp(fontSize: 15, color: AppColors.textSecondary, fontWeight: FontWeight.w600),
+                                speed: const Duration(milliseconds: 100),
+                              ),
+                            ],
                             totalRepeatCount: 100,
                             pause: const Duration(milliseconds: 2000),
                             displayFullTextOnTap: true,
                             stopPauseOnTap: true,
                           ),
                         ),
-                        const SizedBox(height: 30),
-                        Row(
+                        const SizedBox(height: 18),
+                        Wrap(
+                          spacing: 12,
+                          runSpacing: 8,
                           children: [
-                           SocialIconButton(
-  icon: FontAwesomeIcons.github,
-  url: 'https://github.com/ilham-mustaqeem',
-  color: const Color(0xFF1F2937),
-),
-const SizedBox(width: 15),
-SocialIconButton(
-  icon: FontAwesomeIcons.linkedin,
-  url: 'https://www.linkedin.com/in/ilham-mustaqeem-130797269/',
-  color: const Color(0xFF2563EB),
-),
-const SizedBox(width: 15),
-SocialIconButton(
-  icon: FontAwesomeIcons.instagram,
-  url: 'https://www.instagram.com/mustaqeyym?igsh=MTNrZDM3NjB5ZTZzZg%3D%3D&utm_source=qr', // Replace with your Instagram username
-  color: const Color(0xFFE4405F), // Instagram's brand color
-),
-const SizedBox(width: 15),
-SocialIconButton(
-  icon: FontAwesomeIcons.youtube,
-  url: 'https://youtube.com/@mustnomad?si=sXfdFmEkofJTcfQh', // Replace with your YouTube channel
-  color: const Color(0xFFFF0000), // YouTube's brand red
-),
-const SizedBox(width: 15),
-SocialIconButton(
-  icon: FontAwesomeIcons.threads,
-  url: 'https://www.threads.com/@mustaqeyym?igshid=NTc4MTIwNjQ2YQ==', // Replace with your Threads username
-  color: const Color(0xFF000000), // Threads uses black
-),
-const SizedBox(width: 15),
-SocialIconButton(
-  icon: FontAwesomeIcons.tiktok,
-  url: 'https://www.tiktok.com/@.mqym?_r=1&_t=ZS-94IAjzgPl3d', // Replace with your TikTok username
-  color: const Color(0xFF000000), // TikTok typically uses black
-),
-const SizedBox(width: 15),
-SocialIconButton(
-  icon: FontAwesomeIcons.envelope,
-  url: 'mailto:ilhammustaqeem8@gmail.com',
-  color: const Color(0xFF1F2937),
-),
+                            SocialIconButton(icon: FontAwesomeIcons.github, url: 'https://github.com/ilham-mustaqeem', color: const Color(0xFF1F2937)),
+                            SocialIconButton(icon: FontAwesomeIcons.linkedin, url: 'https://www.linkedin.com/in/ilham-mustaqeem-130797269/', color: const Color(0xFF2563EB)),
+                            SocialIconButton(icon: FontAwesomeIcons.instagram, url: 'https://www.instagram.com/mustaqeyym?igsh=MTNrZDM3NjB5ZTZzZg%3D%3D&utm_source=qr', color: const Color(0xFFE4405F)),
+                            SocialIconButton(icon: FontAwesomeIcons.youtube, url: 'https://youtube.com/@mustnomad?si=sXfdFmEkofJTcfQh', color: const Color(0xFFFF0000)),
+                            SocialIconButton(icon: FontAwesomeIcons.threads, url: 'https://www.threads.com/@mustaqeyym?igshid=NTc4MTIwNjQ2YQ==', color: const Color(0xFF000000)),
+                            SocialIconButton(icon: FontAwesomeIcons.tiktok, url: 'https://www.tiktok.com/@.mqym?_r=1&_t=ZS-94IAjzgPl3d', color: const Color(0xFF000000)),
+                            SocialIconButton(icon: FontAwesomeIcons.envelope, url: 'mailto:ilhammustaqeem8@gmail.com', color: const Color(0xFF1F2937)),
                           ],
                         ),
                       ],
                     ),
                   ),
-                  
-            // ... your text content stays the same ...
-          ],
-        ),
-      ),
-      
-      // 👇 REPLACE WITH THIS ANIMATED WIDGET
-       AnimatedProfileImage(),
-    ],
-  ),
-),
+                  const SizedBox(width: 24),
+                  Container(
+                    width: 76,
+                    height: 76,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/photo_6145403992587046632_y.jpg'),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
 
-            // About Section
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 60),
-              color: AppColors.background,
+            // About
+            ContentContainer(
+              key: _aboutKey,
+              verticalPadding: const EdgeInsets.only(bottom: 36),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  EditorialSectionHeader(
+                  const EditorialSectionHeader(
                     number: '01',
                     title: 'ABOUT',
                     jpLabel: '自己紹介',
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 20),
                   Text(
                     'Here is a little background',
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      color: AppColors.charcoal,
-                      fontWeight: FontWeight.w700,
-                    ) ?? const TextStyle(color: AppColors.charcoal),
+                    style: GoogleFonts.notoSerifJp(fontSize: 16, fontWeight: FontWeight.w700, color: AppColors.charcoal),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 14),
                   Text(
                     'Hey 👋🏼 Im Ilham, a tech guy based in Malaysia whos kinda obsessed with AI, coding, and building random ideas that pop into my head at 1AM.'
                     ' Outside of class, Im working on side projects, or exploring new tech I randomly decided to learn that week. I enjoy building things that actually work (and debugging them 47 times after).'
                     ' When Im not behind a screen, Im usually out doing something active such as solo traveling, biking, running, or trying literally any sport at least once. Im always down to try new things. Comfort zone? We dont know her.'
                     ' I like learning, growing, and challenging myself whether thats in tech, fitness, or life in general.'
                     ' If you are curious about what I have been doing lately, you can always check out my personal site 😉',
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: AppColors.textSecondary,
-                      height: 1.7,
-                    ) ?? const TextStyle(color: AppColors.textSecondary),
+                    style: GoogleFonts.notoSansJp(fontSize: 13.5, color: AppColors.textSecondary, height: 1.8),
                   ),
                 ],
               ),
             ),
+            const ContentContainer(child: ThinDivider(padding: EdgeInsets.zero)),
 
-     // Projects Section
-Container(
-  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 60),
-  color: AppColors.background,
-  child: Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      EditorialSectionHeader(
-        number: '02',
-        title: 'PROJECTS',
-        jpLabel: '作品',
-      ),
-      const SizedBox(height: 18),
-      Text('SELECTED PROJECTS', style: Theme.of(context).textTheme.titleMedium?.copyWith(color: AppColors.charcoal)),
-      const SizedBox(height: 12),
-      Text('PROJECT ARCHIVE / 2023 — 2026', style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppColors.textSecondary)),
-      const SizedBox(height: 28),
-
-      // Responsive collection of devices
-      // ==========================================
-      // RETRO PROJECT DEVICE GRID
-      // Exactly 3 devices per row on desktop
-      // ==========================================
-     LayoutBuilder(
-  builder: (context, constraints) {
-    const spacing = 24.0;
-
-    return GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-
-      padding: const EdgeInsets.only(
-        bottom: 40,
-      ),
-
-      gridDelegate:
-          const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        crossAxisSpacing: spacing,
-        mainAxisSpacing: 32,
-        mainAxisExtent: 380,
-      ),
-
-      itemCount: projects.length,
-
-      itemBuilder: (context, i) {
-        final p = projects[i];
-
-        return RetroProjectDevice(
-          project: p,
-          index: i + 1,
-          onView: () {
-            showDialog(
-              context: context,
-              builder: (_) => AlertDialog(
-                title: Text(p.title),
-                content: Text(p.description),
-              ),
-            );
-          },
-        );
-      },
-    );
-  },
-),
-
-      const SizedBox(height: 30),
-      Container(
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(vertical: 26, horizontal: 24),
-        decoration: BoxDecoration(
-          color: AppColors.surface,
-          borderRadius: BorderRadius.circular(18),
-          border: Border.all(color: AppColors.border, width: 2),
-          boxShadow: [
-            BoxShadow(
-              color: AppColors.charcoal.withOpacity(0.08),
-              offset: const Offset(5, 5),
-              blurRadius: 0,
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(Icons.construction, size: 20, color: AppColors.accent),
-            const SizedBox(width: 10),
-            Text(
-              'MORE PROJECTS COMING SOON',
-              style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                color: AppColors.accent,
-                letterSpacing: 1.1,
-                fontWeight: FontWeight.w700,
-              ) ?? const TextStyle(color: AppColors.accent),
-            ),
-          ],
-        ),
-      ),
-    ],
-  ),
-),
-  // Skills Section
-Container(
-  padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 60),
-  color: AppColors.background,
-  child: Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      EditorialSectionHeader(
-        number: '03',
-        title: 'SKILLS',
-        jpLabel: '技術',
-      ),
-      const SizedBox(height: 30),
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: _SkillBoardCard(
-              title: 'Technical Skills',
-              subtitle: 'Engineering systems, APIs, and product delivery',
-              items: const [
-                'Programming: Java, Python, Dart, Html, JavaScript, SQL, Yaml',
-                'Backend & Development: REST API, Microservices, MVC, Application Development, Docker',
-                'Cloud & DevOps: AWS Lambda, Amazon S3, EventBridge, GitLab CI/CD, ECR',
-                'API & Integration: IBM API Connect (APIC), Swagger/OpenAPI',
-                'Database & Tools: MySQL Workbench, Firebase, Oracle',
-                'Version Control: Gitlab, GitHub',
-              ],
-            ),
-          ),
-          const SizedBox(width: 20),
-          Expanded(
-            child: Column(
-              children: [
-                _CompactInfoCard(
-                  label: 'Current base',
-                  location: 'Kuala Lumpur',
-                  period: 'Apr 2026 - Present',
-                ),
-                const SizedBox(height: 20),
-                _CompactInfoCard(
-                  label: 'Previous base',
-                  location: 'Arau, Perlis',
-                  period: 'Jul 2023',
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    ],
-  ),
-),
-            // Contact Section
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 60),
-              color: const Color(0xFF111827),
+            // Skills
+            ContentContainer(
+              key: _skillsKey,
+              verticalPadding: const EdgeInsets.symmetric(vertical: 36),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Let\'s Talk',
-                    style: GoogleFonts.inter(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
+                  const EditorialSectionHeader(
+                    number: '02',
+                    title: 'SKILLS',
+                    jpLabel: '技術',
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 24),
+                  const SkillGroup(
+                    label: 'PROGRAMMING',
+                    items: ['Java', 'Python', 'Dart', 'HTML', 'JavaScript', 'SQL', 'YAML'],
+                  ),
+                  const SizedBox(height: 18),
+                  const SkillGroup(
+                    label: 'BACKEND & DEVELOPMENT',
+                    items: ['REST API', 'Microservices', 'MVC', 'Application Development', 'Docker'],
+                  ),
+                  const SizedBox(height: 18),
+                  const SkillGroup(
+                    label: 'CLOUD & DEVOPS',
+                    items: ['AWS Lambda', 'Amazon S3', 'EventBridge', 'GitLab CI/CD', 'ECR'],
+                  ),
+                  const SizedBox(height: 18),
+                  const SkillGroup(
+                    label: 'API & INTEGRATION',
+                    items: ['IBM API Connect (APIC)', 'Swagger/OpenAPI'],
+                  ),
+                  const SizedBox(height: 18),
+                  const SkillGroup(
+                    label: 'DATABASE & TOOLS',
+                    items: ['MySQL Workbench', 'Firebase', 'Oracle'],
+                  ),
+                  const SizedBox(height: 18),
+                  const SkillGroup(
+                    label: 'VERSION CONTROL',
+                    items: ['GitLab', 'GitHub'],
+                  ),
+                  const SizedBox(height: 28),
+                  Wrap(
+                    spacing: 48,
+                    runSpacing: 16,
+                    children: [
+                      _MetaLine(label: 'Current base', value: 'Kuala Lumpur — Apr 2026 to Present'),
+                      _MetaLine(label: 'Previous base', value: 'Arau, Perlis — Jul 2023'),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const ContentContainer(child: ThinDivider(padding: EdgeInsets.zero)),
+
+            // Education
+            ContentContainer(
+              key: _educationKey,
+              verticalPadding: const EdgeInsets.symmetric(vertical: 36),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const EditorialSectionHeader(
+                    number: '03',
+                    title: 'EDUCATION',
+                    jpLabel: '学歴',
+                  ),
+                  const SizedBox(height: 24),
+                  for (int i = 0; i < education.length; i++) ...[
+                    if (i > 0) const ThinDivider(),
+                    EducationEntry(
+                      institution: education[i].institution,
+                      degree: education[i].degree,
+                      period: education[i].period,
+                    ),
+                  ],
+                ],
+              ),
+            ),
+            const ContentContainer(child: ThinDivider(padding: EdgeInsets.zero)),
+
+            // Projects
+            ContentContainer(
+              key: _projectsKey,
+              verticalPadding: const EdgeInsets.symmetric(vertical: 36),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const EditorialSectionHeader(
+                    number: '04',
+                    title: 'PROJECTS',
+                    jpLabel: '作品',
+                  ),
+                  const SizedBox(height: 16),
+                  Text('SELECTED PROJECTS', style: GoogleFonts.notoSansJp(fontSize: 12.5, fontWeight: FontWeight.w700, color: AppColors.charcoal, letterSpacing: 0.6)),
+                  const SizedBox(height: 4),
+                  Text('PROJECT ARCHIVE / 2023 — 2026', style: GoogleFonts.notoSansJp(fontSize: 11, color: AppColors.textSecondary, letterSpacing: 0.4)),
+                  for (int i = 0; i < projects.length; i++) ...[
+                    const ThinDivider(),
+                    ProjectEntry(
+                      index: i + 1,
+                      title: projects[i].title,
+                      tech: projects[i].technologies,
+                      description: projects[i].description,
+                      achievement: projects[i].achievement,
+                      githubUrl: projects[i].githubUrl,
+                      demoUrl: projects[i].demoUrl,
+                    ),
+                  ],
+                  const ThinDivider(),
+                  Row(
+                    children: [
+                      Icon(Icons.construction, size: 15, color: AppColors.muted),
+                      const SizedBox(width: 8),
+                      Text(
+                        'MORE PROJECTS COMING SOON',
+                        style: GoogleFonts.notoSansJp(fontSize: 11.5, color: AppColors.muted, letterSpacing: 0.8, fontWeight: FontWeight.w600),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const ContentContainer(child: ThinDivider(padding: EdgeInsets.zero)),
+
+            // Contact
+            ContentContainer(
+              key: _contactKey,
+              verticalPadding: const EdgeInsets.symmetric(vertical: 36),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const EditorialSectionHeader(
+                    number: '05',
+                    title: 'CONTACT',
+                    jpLabel: '連絡先',
+                  ),
+                  const SizedBox(height: 16),
                   Text(
                     'I have got just what you need. Lets talk.',
-                    style: GoogleFonts.inter(
-                      fontSize: 18,
-                      color: const Color(0xFF9CA3AF),
-                    ),
+                    style: GoogleFonts.notoSansJp(fontSize: 13.5, color: AppColors.textSecondary),
                   ),
-                  const SizedBox(height: 40),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  const SizedBox(height: 20),
+                  Wrap(
+                    spacing: 36,
+                    runSpacing: 14,
                     children: [
                       ContactInfo(
                         icon: Icons.phone,
                         info: '+601163831902',
                         onTap: () => launchUrl(Uri.parse('tel:+601163831902')),
                       ),
-                      const SizedBox(width: 40),
                       ContactInfo(
                         icon: Icons.email,
                         info: 'ilhammustaqeem8@gmail.com',
                         onTap: () => launchUrl(Uri.parse('mailto:ilhammustaqeem8@gmail.com')),
                       ),
-                      const SizedBox(width: 40),
-                      ContactInfo(
+                      const ContactInfo(
                         icon: Icons.location_on,
                         info: 'Malaysia',
                         onTap: null,
                       ),
                     ],
                   ),
-                  const SizedBox(height: 40),
-                  const Divider(color: Color(0xFF374151)),
-                  const SizedBox(height: 20),
-                  Text(
-                    '© 2025 Ilham Mustaqeem. All rights reserved.',
-                    style: GoogleFonts.inter(
-                      color: const Color(0xFF6B7280),
-                    ),
-                  ),
                 ],
               ),
             ),
+
+            const SiteFooter(copyrightText: '© 2025 Ilham Mustaqeem. All rights reserved.'),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _MetaLine extends StatelessWidget {
+  final String label;
+  final String value;
+  const _MetaLine({required this.label, required this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label, style: GoogleFonts.notoSansJp(fontSize: 11, color: AppColors.textSecondary, letterSpacing: 0.8, fontWeight: FontWeight.w700)),
+        const SizedBox(height: 4),
+        Text(value, style: GoogleFonts.notoSansJp(fontSize: 13, color: AppColors.charcoal, fontWeight: FontWeight.w600)),
+      ],
     );
   }
 }
@@ -575,16 +501,33 @@ class _PersonalSitePageState extends State<PersonalSitePage> {
   bool _isFlipped3 = false; // Surfing
   bool _isFlipped4 = false; // Travelling
 
+  final GlobalKey _aboutMeKey = GlobalKey();
+  final GlobalKey _sportsKey = GlobalKey();
+  final GlobalKey _adventuresKey = GlobalKey();
+
+  void _scrollToSection(GlobalKey key) {
+    final targetContext = key.currentContext;
+    if (targetContext != null) {
+      Scrollable.ensureVisible(
+        targetContext,
+        duration: const Duration(milliseconds: 450),
+        curve: Curves.easeInOut,
+        alignment: 0.04,
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background,
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             EditorialHeader(
               handle: 'NOMADMUSTAQEEM',
-              name: '03 North 1st Street',
+              name: 'Ilham Mustaqeem',
               subtitle: 'Beyond the code · running · travel · craft',
               statusLine: 'PERSONAL SITE • MALAYSIA • 2026',
               onPortfolioTap: () {
@@ -592,47 +535,51 @@ class _PersonalSitePageState extends State<PersonalSitePage> {
               },
               onPersonalTap: () {},
             ),
+            SiteNav(
+              items: [
+                SiteNavItem(label: 'About Me', onTap: () => _scrollToSection(_aboutMeKey)),
+                SiteNavItem(label: 'Sports & Activities', onTap: () => _scrollToSection(_sportsKey)),
+                SiteNavItem(label: 'Next Adventures', onTap: () => _scrollToSection(_adventuresKey)),
+              ],
+            ),
 
-            const ThinDivider(),
-
-            // Hero Section - Personal
-            Container(
-              height: 300,
-              padding: const EdgeInsets.symmetric(horizontal: 40),
-              color: AppColors.background,
+            // Compact intro — no large hero
+            ContentContainer(
+              verticalPadding: const EdgeInsets.symmetric(vertical: 36),
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Expanded(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           'Beyond the Code',
-                          style: GoogleFonts.inter(
-                            fontSize: 48,
-                            fontWeight: FontWeight.bold,
-                            color: const Color(0xFF111827),
+                          style: GoogleFonts.notoSerifJp(
+                            fontSize: 26,
+                            fontWeight: FontWeight.w700,
+                            color: AppColors.charcoal,
                           ),
                         ),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 8),
                         Text(
-                          'My personal space - journey, adventures, and everything in between',
-                          style: GoogleFonts.inter(
-                            fontSize: 18,
-                            color: const Color(0xFF4B5563),
+                          'My personal space — journey, adventures, and everything in between',
+                          style: GoogleFonts.notoSansJp(
+                            fontSize: 13.5,
+                            color: AppColors.textSecondary,
+                            height: 1.6,
                           ),
                         ),
                       ],
                     ),
                   ),
+                  const SizedBox(width: 24),
                   Container(
-                    width: 150,
-                    height: 150,
-                    decoration: BoxDecoration(
+                    width: 76,
+                    height: 76,
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      color: const Color(0xFFE5E7EB),
-                      image: const DecorationImage(
+                      image: DecorationImage(
                         image: AssetImage('assets/images/photo_6145403992587046632_y.jpg'),
                         fit: BoxFit.cover,
                       ),
@@ -642,233 +589,96 @@ class _PersonalSitePageState extends State<PersonalSitePage> {
               ),
             ),
 
-            // SECTION 1: Personal Details (About Me)
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 60),
-              color: AppColors.background,
+            // SECTION 1: About Me
+            ContentContainer(
+              key: _aboutMeKey,
+              verticalPadding: const EdgeInsets.symmetric(vertical: 36),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  EditorialSectionHeader(
+                  const EditorialSectionHeader(
                     number: '01',
                     title: 'ABOUT ME',
                     jpLabel: '私について',
                   ),
-                  const SizedBox(height: 30),
-                  
-                  // Personal Details Card
+                  const SizedBox(height: 22),
+                  Text(
+                    'Mustaqeem',
+                    style: GoogleFonts.notoSerifJp(fontSize: 20, fontWeight: FontWeight.w700, color: AppColors.charcoal),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Just a Guy From Somewhere',
+                    style: GoogleFonts.notoSansJp(fontSize: 13.5, color: AppColors.textSecondary, fontWeight: FontWeight.w500),
+                  ),
+                  const SizedBox(height: 20),
+
+                  // Personal quote — flat, left-rule blockquote instead of a card
                   Container(
-                    padding: const EdgeInsets.all(40),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFF9FAFB),
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(color: const Color(0xFFE5E7EB)),
+                    padding: const EdgeInsets.only(left: 16),
+                    decoration: const BoxDecoration(
+                      border: Border(left: BorderSide(color: AppColors.border, width: 2)),
                     ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Profile Summary
-                        Expanded(
-                          flex: 2,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              // Name with greeting
-                              Text(
-                                'Mustaqeem',
-                                style: GoogleFonts.inter(
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.bold,
-                                  color: const Color(0xFF111827),
-                                ),
-                              ),
-                              const SizedBox(height: 8),
-                              Text(
-                                'Just a Guy From Somewhere',
-                                style: GoogleFonts.inter(
-                                  fontSize: 18,
-                                  color: const Color.fromARGB(255, 18, 18, 19),
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              const SizedBox(height: 24),
-                              
-                              // Personal Quote
-                              Container(
-                                padding: const EdgeInsets.all(20),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(12),
-                                  border: Border.all(color: const Color(0xFFE5E7EB)),
-                                ),
-                                child: Column(
-                                  children: [
-                                    Icon(
-                                      Icons.format_quote,
-                                      size: 40,
-                                      color: const Color(0xFF2563EB).withOpacity(0.2),
-                                    ),
-                                    const SizedBox(height: 10),
-                                    Text(
-                                      '"Tidak Masalah Seberapa Lambatnya Kamu Berjalan, Yang Penting Kamu Tidak Berhenti - Confucius"',
-                                      style: GoogleFonts.inter(
-                                        fontSize: 16,
-                                        color: const Color(0xFF4B5563),
-                                        height: 1.6,
-                                        fontStyle: FontStyle.italic,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(width: 40),
-                        
-                        // Personal Details Grid
-                        Expanded(
-                          flex: 3,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Personal Information',
-                                style: GoogleFonts.inter(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600,
-                                  color: const Color(0xFF111827),
-                                ),
-                              ),
-                              const SizedBox(height: 20),
-                              
-                              // Details Grid
-                              Wrap(
-                                spacing: 20,
-                                runSpacing: 20,
-                                children: [
-                                  _PersonalDetailCard(
-                                    icon: Icons.person,
-                                    label: 'Full Name',
-                                    value: 'Ilham Mustaqeem',
-                                  ),
-                                  _PersonalDetailCard(
-                                    icon: Icons.cake,
-                                    label: 'Age',
-                                    value: '23 years old', // Update with actual age
-                                  ),
-                                  _PersonalDetailCard(
-                                    icon: Icons.language,
-                                    label: 'Languages',
-                                    value: 'Malay (Native), English (Intermediate), German (Basic)',
-                                  ),
-                                 _PersonalDetailCard(
-                                    icon: Icons.location_on,
-                                    label: 'Roots',
-                                    value: '🇲🇾 Selangor, Malaysia | 🇹🇭 Kanchanaburi, Thailand',
-                                  ),
-                                  _PersonalDetailCard(
-                                    icon: Icons.school,
-                                    label: 'Education',
-                                    value: 'BIS Intelligent System Engineering, UiTM',
-                                  ),
-                                  _PersonalDetailCard(
-                                    icon: Icons.work,
-                                    label: 'Current Role',
-                                    value: 'None (Looking for Internship Postition)',
-                                  ),
-                                  _PersonalDetailCard(
-                                    icon: Icons.favorite,
-                                    label: 'Passions',
-                                    value: 'Technology, Travel',
-                                  ),
-                                  _PersonalDetailCard(
-                                    icon: Icons.music_note,
-                                    label: 'Hobbies',
-                                    value: 'Anything got me sweat',
-                                  ),
-                                ],
-                              ),
-                              
-                              const SizedBox(height: 30),
-                              
-                              // Personal Mission
-                              Container(
-                                padding: const EdgeInsets.all(20),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(12),
-                                  border: Border.all(color: const Color(0xFFE5E7EB)),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      padding: const EdgeInsets.all(12),
-                                      decoration: BoxDecoration(
-                                        color: const Color.fromARGB(255, 16, 16, 17).withOpacity(0.1),
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
-                                      child: const Icon(
-                                        Icons.flag,
-                                        color: Color.fromARGB(255, 19, 19, 20),
-                                        size: 24,
-                                      ),
-                                    ),
-                                    const SizedBox(width: 16),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            'My Mission',
-                                            style: GoogleFonts.inter(
-                                              fontSize: 16,
-                                              fontWeight: FontWeight.w600,
-                                              color: const Color.fromARGB(255, 22, 23, 23),
-                                            ),
-                                          ),
-                                          const SizedBox(height: 4),
-                                          Text(
-                                            'Explore Each Country',
-                                            style: GoogleFonts.inter(
-                                              fontSize: 14,
-                                              color: const Color(0xFF4B5563),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                    child: Text(
+                      '"Tidak Masalah Seberapa Lambatnya Kamu Berjalan, Yang Penting Kamu Tidak Berhenti - Confucius"',
+                      style: GoogleFonts.notoSansJp(
+                        fontSize: 13.5,
+                        color: AppColors.textSecondary,
+                        height: 1.7,
+                        fontStyle: FontStyle.italic,
+                      ),
                     ),
                   ),
+                  const SizedBox(height: 28),
+
+                  Text(
+                    'PERSONAL INFORMATION',
+                    style: GoogleFonts.notoSansJp(fontSize: 11.5, color: AppColors.textSecondary, fontWeight: FontWeight.w700, letterSpacing: 1.1),
+                  ),
+                  const SizedBox(height: 16),
+                  Wrap(
+                    spacing: 40,
+                    runSpacing: 18,
+                    children: const [
+                      _MetaLine(label: 'Full Name', value: 'Ilham Mustaqeem'),
+                      _MetaLine(label: 'Age', value: '23 years old'),
+                      _MetaLine(label: 'Languages', value: 'Malay (Native), English (Intermediate), German (Basic)'),
+                      _MetaLine(label: 'Roots', value: '🇲🇾 Selangor, Malaysia | 🇹🇭 Kanchanaburi, Thailand'),
+                      _MetaLine(label: 'Education', value: 'BIS Intelligent System Engineering, UiTM'),
+                      _MetaLine(label: 'Current Role', value: 'None (Looking for Internship Position)'),
+                      _MetaLine(label: 'Passions', value: 'Technology, Travel'),
+                      _MetaLine(label: 'Hobbies', value: 'Anything got me sweat'),
+                    ],
+                  ),
+                  const SizedBox(height: 28),
+                  const _MetaLine(label: 'My Mission', value: 'Explore Each Country'),
                 ],
               ),
             ),
+            const ContentContainer(child: ThinDivider(padding: EdgeInsets.zero)),
 
-            // SECTION 2: Sports & Activities (4 Flip Cards in a Row)
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 60),
-              color: AppColors.background,
+            // SECTION 2: Sports & Activities (4 Flip Cards, horizontal scroll)
+            ContentContainer(
+              key: _sportsKey,
+              verticalPadding: const EdgeInsets.symmetric(vertical: 36),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  EditorialSectionHeader(
+                  const EditorialSectionHeader(
                     number: '02',
                     title: 'SPORTS & ACTIVITIES',
                     jpLabel: '日常の力',
                   ),
-                  const SizedBox(height: 30),
-                  
+                  const SizedBox(height: 8),
+                  Text(
+                    'Tap a card to flip it.',
+                    style: GoogleFonts.notoSansJp(fontSize: 11.5, color: AppColors.muted),
+                  ),
+                  const SizedBox(height: 22),
+
                   // Four Flip Cards in a Row
                   SizedBox(
-                    height: 550, // Fixed height for the row
+                    height: 500, // Fixed height for the row
                     child: ListView(
                       scrollDirection: Axis.horizontal,
                       children: [
@@ -1007,218 +817,104 @@ class _PersonalSitePageState extends State<PersonalSitePage> {
               ),
             ),
 
-        // SECTION 3: Next Adventures & Projects (Redesigned with Map)
-      Container(
-        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 60),
-        color: AppColors.background,
-  child: Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      EditorialSectionHeader(
-        number: '03',
-        title: 'NEXT ADVENTURES',
-        jpLabel: '次の旅',
-      ),
-      const SizedBox(height: 40),
-      
-      // Two-Column Layout: Left side - Map | Right side - Details
-      Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // LEFT COLUMN: Map Visualization (40% width)
-          // LEFT COLUMN: Live Map (40% width)
-Expanded(
-  flex: 4,
-  child: Container(
-    height: 600, // Fixed height for map
-    padding: const EdgeInsets.all(24),
-    decoration: BoxDecoration(
-      color: const Color(0xFFF9FAFB),
-      borderRadius: BorderRadius.circular(20),
-      border: Border.all(color: const Color(0xFFE5E7EB)),
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // Map Header
-        Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: const Color(0xFF2563EB).withOpacity(0.1),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: const Icon(
-                Icons.map,
-                color: Color(0xFF2563EB),
-                size: 20,
-              ),
-            ),
-            const SizedBox(width: 12),
-            Text(
-              'Eurasian Trip 2028',
-              style: GoogleFonts.inter(
-                fontSize: 18,
-                fontWeight: FontWeight.w600,
-                color: const Color(0xFF111827),
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 20),
-        
-        // Live Interactive Map
-        Expanded(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(16),
-            child: _ExpeditionMap(),
-          ),
-        ),
-        
-        const SizedBox(height: 24),
-        
-        // Route Statistics (keep as is)
-        Container(
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: const Color(0xFFE5E7EB)),
-          ),
+        // SECTION 3: Next Adventures — map on top, details stacked below
+        ContentContainer(
+          key: _adventuresKey,
+          verticalPadding: const EdgeInsets.symmetric(vertical: 36),
           child: Column(
-            // ... your existing stats content
-          ),
-        ),
-      ],
-    ),
-  ),
-),
-          
-          const SizedBox(width: 30),
-          
-          // RIGHT COLUMN: Adventure Details (60% width)
-          Expanded(
-            flex: 6,
-            child: Column(
-              children: [
-                // First Adventure (Trail Run)
-                _ModernAdventureCard(
-                  title: 'First Trail Run Event',
-                  date: 'July 2026',
-                  duration: '30km+',
-                  location: 'Negeri Sembilan',
-                  imageUrl: 'https://www.trainingpeaks.com/blog/5-tips-for-technical-trail-running-and-racing/',
-                  description: 'My first official trail running event! Training hard for this 30km+ challenge through the beautiful trails of Negeri Sembilan.',
-                  highlights: const [
-                    'Weekend trail runs',
-                    'Hill endurance training',
-                    'Route study & elevation',
-                    'Goal: Finish strong',
-                  ],
-                  status: 'Training Phase',
-                  progress: 0.3,
-                  color: const Color(0xFF10B981),
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const EditorialSectionHeader(
+                number: '03',
+                title: 'NEXT ADVENTURES',
+                jpLabel: '次の旅',
+              ),
+              const SizedBox(height: 22),
+
+              // Live route map — flat, thin border
+              Container(
+                padding: const EdgeInsets.all(18),
+                decoration: BoxDecoration(
+                  border: Border.all(color: AppColors.border),
                 ),
-                
-                const SizedBox(height: 24),
-                
-                // Second Adventure (The Great Expedition) - HIGHLIGHTED
-                Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        const Color(0xFF2563EB).withOpacity(0.05),
-                        Colors.white,
-                        const Color(0xFF2563EB).withOpacity(0.05),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.map_outlined, size: 16, color: AppColors.textSecondary),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Eurasian Trip 2028',
+                          style: GoogleFonts.notoSansJp(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.charcoal),
+                        ),
                       ],
                     ),
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                      color: const Color(0xFF2563EB).withOpacity(0.3),
-                      width: 2,
+                    const SizedBox(height: 14),
+                    SizedBox(
+                      height: 280,
+                      child: _ExpeditionMap(),
                     ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: const Color(0xFF2563EB).withOpacity(0.1),
-                        spreadRadius: 4,
-                        blurRadius: 12,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: _ExpeditionDetailCard(
-                    title: 'Eurasian Overland Expedition (Will Be Updating)',
-                    subtitle: 'Malaysia → Mongolia → China → Kyrgyzstan → Pakistan → Bosnia',
-                    duration: 'Q3 2028 - Q3 2029',
-                    imageUrl: 'https://images.unsplash.com/photo-1526495124232-a04e1849168c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
-                    description: 'A once-in-a-lifetime overland journey across the Eurasian continent. Following ancient trade routes and modern adventures, this expedition will take me through some of the world most breathtaking landscapes and rich cultures.',
-                    itinerary: const [
-                      '🇲🇾 Malaysia → 🇲🇳 Mongolia: 2 months exploring the steppes, nomadic culture, and Gobi Desert',
-                      '🇲🇳 Mongolia → 🇨🇳 China: 3 months traversing the Silk Road, from Xinjiang to Beijing',
-                      '🇨🇳 China → 🇰🇬 Kyrgyzstan: 4 months in the Tian Shan mountains, alpine lakes, and yurt stays',
-                      '🇰🇬 Kyrgyzstan → 🇵🇰 Pakistan: 2 months on the Karakoram Highway, through the Pamir Mountains',
-                      '🇵🇰 Pakistan → 🇧🇦 Bosnia: 1 month in the Balkans, ending in Sarajevo',
-                      '➕ 2 months TBD: Flexible exploration (possibly Turkey, Caucasus, or Europe)',
-                    ],
-                    stats: const {
-                      'Total Duration': '12-14 months',
-                      'Countries': '6+',
-                      'Mongolia Stay': '2 months',
-                      'China Stay': '3 months',
-                      'Kyrgyzstan Stay': '4 months',
-                      'Pakistan Stay': '2 months',
-                      'Bosnia Stay': '1 month',
-                    },
-                  ),
+                  ],
                 ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    ],
-  ),
-),
-
-
-
-            // Footer
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 30),
-              color: const Color(0xFF111827),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    '© 2025 Ilham Mustaqeem. All rights reserved.',
-                    style: GoogleFonts.inter(
-                      color: const Color(0xFF6B7280),
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      IconButton(
-                        icon: const FaIcon(FontAwesomeIcons.github, color: Color(0xFF9CA3AF), size: 20),
-                        onPressed: () => launchUrl(Uri.parse('https://github.com/ilham-mustaqeem')),
-                      ),
-                      const SizedBox(width: 10),
-                      IconButton(
-                        icon: const FaIcon(FontAwesomeIcons.linkedin, color: Color(0xFF9CA3AF), size: 20),
-                        onPressed: () => launchUrl(Uri.parse('https://www.linkedin.com/in/ilham-mustaqeem-130797269/')),
-                      ),
-                      const SizedBox(width: 10),
-                      IconButton(
-                        icon: const FaIcon(FontAwesomeIcons.instagram, color: Color(0xFF9CA3AF), size: 20),
-                        onPressed: () => launchUrl(Uri.parse('https://instagram.com/ilham_mustaqeem')),
-                      ),
-                    ],
-                  ),
-                ],
               ),
-            ),
+              const SizedBox(height: 28),
+
+              // First Adventure (Trail Run)
+              _ModernAdventureCard(
+                title: 'First Trail Run Event',
+                date: 'July 2026',
+                duration: '30km+',
+                location: 'Negeri Sembilan',
+                imageUrl: 'https://www.trainingpeaks.com/blog/5-tips-for-technical-trail-running-and-racing/',
+                description: 'My first official trail running event! Training hard for this 30km+ challenge through the beautiful trails of Negeri Sembilan.',
+                highlights: const [
+                  'Weekend trail runs',
+                  'Hill endurance training',
+                  'Route study & elevation',
+                  'Goal: Finish strong',
+                ],
+                status: 'Training Phase',
+                progress: 0.3,
+                color: const Color(0xFF10B981),
+              ),
+              const SizedBox(height: 24),
+
+              // Second Adventure (The Great Expedition) — flat, no gradient
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: AppColors.border),
+                ),
+                child: _ExpeditionDetailCard(
+                  title: 'Eurasian Overland Expedition (Will Be Updating)',
+                  subtitle: 'Malaysia → Mongolia → China → Kyrgyzstan → Pakistan → Bosnia',
+                  duration: 'Q3 2028 - Q3 2029',
+                  imageUrl: 'https://images.unsplash.com/photo-1526495124232-a04e1849168c?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80',
+                  description: 'A once-in-a-lifetime overland journey across the Eurasian continent. Following ancient trade routes and modern adventures, this expedition will take me through some of the world most breathtaking landscapes and rich cultures.',
+                  itinerary: const [
+                    '🇲🇾 Malaysia → 🇲🇳 Mongolia: 2 months exploring the steppes, nomadic culture, and Gobi Desert',
+                    '🇲🇳 Mongolia → 🇨🇳 China: 3 months traversing the Silk Road, from Xinjiang to Beijing',
+                    '🇨🇳 China → 🇰🇬 Kyrgyzstan: 4 months in the Tian Shan mountains, alpine lakes, and yurt stays',
+                    '🇰🇬 Kyrgyzstan → 🇵🇰 Pakistan: 2 months on the Karakoram Highway, through the Pamir Mountains',
+                    '🇵🇰 Pakistan → 🇧🇦 Bosnia: 1 month in the Balkans, ending in Sarajevo',
+                    '➕ 2 months TBD: Flexible exploration (possibly Turkey, Caucasus, or Europe)',
+                  ],
+                  stats: const {
+                    'Total Duration': '12-14 months',
+                    'Countries': '6+',
+                    'Mongolia Stay': '2 months',
+                    'China Stay': '3 months',
+                    'Kyrgyzstan Stay': '4 months',
+                    'Pakistan Stay': '2 months',
+                    'Bosnia Stay': '1 month',
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
+
+            const SiteFooter(copyrightText: '© 2025 Ilham Mustaqeem. All rights reserved.'),
           ],
         ),
       ),
@@ -1389,19 +1085,10 @@ class _SportFrontCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 500,
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
-            spreadRadius: 2,
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-        border: Border.all(color: const Color(0xFFE5E7EB)),
+        color: AppColors.surface,
+        border: Border.all(color: AppColors.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1409,43 +1096,31 @@ class _SportFrontCard extends StatelessWidget {
           // Title and Icon (Fixed at top)
           Row(
             children: [
-              Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 4, 4, 4).withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Icon(icon, size: 28, color: const Color.fromARGB(255, 10, 10, 10)),
-              ),
-              const SizedBox(width: 16),
+              Icon(icon, size: 20, color: AppColors.accent),
+              const SizedBox(width: 10),
               Text(
                 title,
-                style: GoogleFonts.inter(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: const Color(0xFF111827),
+                style: GoogleFonts.notoSerifJp(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w700,
+                  color: AppColors.charcoal,
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 16),
-          
+          const SizedBox(height: 10),
+
           // Stats (Fixed)
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            decoration: BoxDecoration(
-              color: const Color(0xFFF3F4F6),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Text(
-              stats,
-              style: GoogleFonts.inter(
-                fontSize: 12,
-                fontWeight: FontWeight.w500,
-                color: const Color.fromARGB(255, 14, 14, 14),
-              ),
+          Text(
+            stats,
+            style: GoogleFonts.notoSansJp(
+              fontSize: 11.5,
+              fontWeight: FontWeight.w600,
+              color: AppColors.textSecondary,
             ),
           ),
+          const SizedBox(height: 4),
+          const ThinDivider(padding: EdgeInsets.only(bottom: 4)),
           const SizedBox(height: 16),
           
           // Scrollable Content Area
@@ -1458,55 +1133,50 @@ class _SportFrontCard extends StatelessWidget {
                   // My Story
                   Text(
                     'My Story',
-                    style: GoogleFonts.inter(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: const Color(0xFF1F2937),
+                    style: GoogleFonts.notoSansJp(
+                      fontSize: 11.5,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.textSecondary,
+                      letterSpacing: 0.6,
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 6),
                   Text(
                     description,
-                    style: GoogleFonts.inter(
-                      fontSize: 14,
-                      color: const Color(0xFF4B5563),
+                    style: GoogleFonts.notoSansJp(
+                      fontSize: 12.5,
+                      color: AppColors.textPrimary,
                       height: 1.6,
                     ),
                   ),
-                  const SizedBox(height: 16),
-                  
+                  const SizedBox(height: 14),
+
                   // Achievements
                   Text(
                     'Achievements',
-                    style: GoogleFonts.inter(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                      color: const Color(0xFF1F2937),
+                    style: GoogleFonts.notoSansJp(
+                      fontSize: 11.5,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.textSecondary,
+                      letterSpacing: 0.6,
                     ),
                   ),
-                  const SizedBox(height: 8),
-                  
+                  const SizedBox(height: 6),
+
                   // Achievements List (Now scrollable within the Expanded)
                   ...achievements.map((achievement) => Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
+                    padding: const EdgeInsets.only(bottom: 6),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '•',
-                          style: GoogleFonts.inter(
-                            fontSize: 16,
-                            color: const Color.fromARGB(255, 2, 2, 2),
-                          ),
+                          '· ',
+                          style: GoogleFonts.notoSansJp(fontSize: 13, color: AppColors.accent),
                         ),
-                        const SizedBox(width: 8),
                         Expanded(
                           child: Text(
                             achievement,
-                            style: GoogleFonts.inter(
-                              fontSize: 13,
-                              color: const Color(0xFF4B5563),
-                            ),
+                            style: GoogleFonts.notoSansJp(fontSize: 12, color: AppColors.textSecondary),
                           ),
                         ),
                       ],
@@ -1516,35 +1186,21 @@ class _SportFrontCard extends StatelessWidget {
               ),
             ),
           ),
-          
+
           const SizedBox(height: 8),
-          
+
           // Flip Hint (Fixed at bottom)
           Center(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-              decoration: BoxDecoration(
-                color: const Color(0xFFF3F4F6),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    Icons.touch_app,
-                    size: 14,
-                    color: const Color(0xFF9CA3AF),
-                  ),
-                  const SizedBox(width: 4),
-                  Text(
-                    'Tap to see gallery',
-                    style: GoogleFonts.inter(
-                      fontSize: 11,
-                      color: const Color(0xFF9CA3AF),
-                    ),
-                  ),
-                ],
-              ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.touch_app, size: 12, color: AppColors.muted),
+                const SizedBox(width: 4),
+                Text(
+                  'Tap to see gallery',
+                  style: GoogleFonts.notoSansJp(fontSize: 10.5, color: AppColors.muted),
+                ),
+              ],
             ),
           ),
         ],
@@ -1571,16 +1227,8 @@ class _SportBackCard extends StatelessWidget {
       height: 500,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: const Color(0xFF1F2937),
-        borderRadius: BorderRadius.circular(20),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
-            spreadRadius: 2,
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
+        color: AppColors.charcoal,
+        border: Border.all(color: AppColors.charcoal),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1588,14 +1236,14 @@ class _SportBackCard extends StatelessWidget {
           // Title
           Text(
             title,
-            style: GoogleFonts.inter(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+            style: GoogleFonts.notoSerifJp(
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
               color: Colors.white,
             ),
           ),
-          const SizedBox(height: 16),
-          
+          const SizedBox(height: 14),
+
           // Image Collage Grid
           Expanded(
             child: GridView.count(
@@ -1604,58 +1252,41 @@ class _SportBackCard extends StatelessWidget {
               crossAxisSpacing: 8,
               mainAxisSpacing: 8,
               children: images.map((imageUrl) {
-                return ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.network(
-                    imageUrl,
-                    fit: BoxFit.cover,
-                  ),
+                return Image.network(
+                  imageUrl,
+                  fit: BoxFit.cover,
                 );
               }).toList(),
             ),
           ),
-          
+
           const SizedBox(height: 12),
-          
+
           // Caption
           Text(
             caption,
-            style: GoogleFonts.inter(
-              fontSize: 12,
+            style: GoogleFonts.notoSansJp(
+              fontSize: 11.5,
               color: Colors.white70,
               fontStyle: FontStyle.italic,
             ),
             textAlign: TextAlign.center,
           ),
-          
+
           const SizedBox(height: 8),
-          
+
           // Back Hint
           Center(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.2),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(
-                    Icons.touch_app,
-                    size: 14,
-                    color: Colors.white70,
-                  ),
-                  const SizedBox(width: 4),
-                  Text(
-                    'Tap for story',
-                    style: GoogleFonts.inter(
-                      fontSize: 11,
-                      color: Colors.white70,
-                    ),
-                  ),
-                ],
-              ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(Icons.touch_app, size: 12, color: Colors.white54),
+                const SizedBox(width: 4),
+                Text(
+                  'Tap for story',
+                  style: GoogleFonts.notoSansJp(fontSize: 10.5, color: Colors.white54),
+                ),
+              ],
             ),
           ),
         ],
@@ -2079,140 +1710,82 @@ class _ModernAdventureCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFFE5E7EB)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.05),
-            spreadRadius: 2,
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
+        color: AppColors.surface,
+        border: Border.all(color: AppColors.border),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Header with Image
-          ClipRRect(
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-            child: Stack(
-              children: [
-                // Use a placeholder gradient if external image is not desired
-                Container(
-                  height: 120,
-                  color: color.withOpacity(0.08),
-                ),
-                Positioned(
-                  bottom: 12,
-                  left: 16,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        title,
-                        style: GoogleFonts.inter(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                      Row(
-                        children: [
-                          Icon(Icons.calendar_today, size: 12, color: Colors.white70),
-                          const SizedBox(width: 4),
-                          Text(date, style: const TextStyle(color: Colors.white70, fontSize: 11)),
-                          const SizedBox(width: 12),
-                          Icon(Icons.location_on, size: 12, color: Colors.white70),
-                          const SizedBox(width: 4),
-                          Text(location, style: const TextStyle(color: Colors.white70, fontSize: 11)),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+          // Header
+          Text(
+            title,
+            style: GoogleFonts.notoSerifJp(
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
+              color: AppColors.charcoal,
             ),
           ),
-          
-          // Content
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Status Badge and Progress
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: color.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Text(
-                        status,
-                        style: GoogleFonts.inter(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w600,
-                          color: color,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      duration,
-                      style: GoogleFonts.inter(
-                        fontSize: 11,
-                        color: const Color(0xFF6B7280),
-                      ),
-                    ),
-                  ],
+          const SizedBox(height: 4),
+          Row(
+            children: [
+              Icon(Icons.calendar_today, size: 12, color: AppColors.muted),
+              const SizedBox(width: 4),
+              Text(date, style: GoogleFonts.notoSansJp(color: AppColors.textSecondary, fontSize: 11)),
+              const SizedBox(width: 12),
+              Icon(Icons.location_on, size: 12, color: AppColors.muted),
+              const SizedBox(width: 4),
+              Text(location, style: GoogleFonts.notoSansJp(color: AppColors.textSecondary, fontSize: 11)),
+            ],
+          ),
+          const SizedBox(height: 14),
+
+          // Status and progress
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                status.toUpperCase(),
+                style: GoogleFonts.notoSansJp(
+                  fontSize: 10.5,
+                  fontWeight: FontWeight.w700,
+                  color: color,
+                  letterSpacing: 0.6,
                 ),
-                
-                const SizedBox(height: 12),
-                
-                // Progress Bar
-                Row(
-                  children: [
-                    Expanded(
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: LinearProgressIndicator(
-                          value: progress,
-                          backgroundColor: const Color(0xFFF3F4F6),
-                          valueColor: AlwaysStoppedAnimation<Color>(color),
-                          minHeight: 4,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      '${(progress * 100).toInt()}%',
-                      style: GoogleFonts.inter(
-                        fontSize: 11,
-                        fontWeight: FontWeight.w600,
-                        color: color,
-                      ),
-                    ),
-                  ],
+              ),
+              Text(
+                duration,
+                style: GoogleFonts.notoSansJp(fontSize: 11, color: AppColors.textSecondary),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              Expanded(
+                child: LinearProgressIndicator(
+                  value: progress,
+                  backgroundColor: AppColors.border,
+                  valueColor: AlwaysStoppedAnimation<Color>(color),
+                  minHeight: 3,
                 ),
-                
-                const SizedBox(height: 12),
-                
-                // Description
-                Text(
-                  description,
-                  style: GoogleFonts.inter(
-                    fontSize: 13,
-                    color: const Color(0xFF4B5563),
-                  ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
-            ),
+              ),
+              const SizedBox(width: 8),
+              Text(
+                '${(progress * 100).toInt()}%',
+                style: GoogleFonts.notoSansJp(fontSize: 11, fontWeight: FontWeight.w600, color: color),
+              ),
+            ],
+          ),
+          const SizedBox(height: 12),
+
+          // Description
+          Text(
+            description,
+            style: GoogleFonts.notoSansJp(fontSize: 12.5, color: AppColors.textSecondary, height: 1.5),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
           ),
         ],
       ),
@@ -2374,131 +1947,101 @@ class _ExpeditionDetailCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(24),
+      padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Title Section
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF2563EB).withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: const Icon(
-                  Icons.explore,
-                  color: Color(0xFF2563EB),
-                  size: 24,
-                ),
-              ),
-              const SizedBox(width: 16),
+              Icon(Icons.explore_outlined, color: AppColors.accent, size: 20),
+              const SizedBox(width: 10),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       title,
-                      style: GoogleFonts.inter(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        color: const Color(0xFF111827),
+                      style: GoogleFonts.notoSerifJp(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w700,
+                        color: AppColors.charcoal,
                       ),
                     ),
                     Text(
                       subtitle,
-                      style: GoogleFonts.inter(
-                        fontSize: 14,
-                        color: const Color(0xFF2563EB),
+                      style: GoogleFonts.notoSansJp(
+                        fontSize: 12.5,
+                        color: AppColors.textSecondary,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
                   ],
                 ),
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                decoration: BoxDecoration(
-                  color: const Color(0xFFF59E0B).withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Text(
-                  duration,
-                  style: GoogleFonts.inter(
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                    color: const Color(0xFFF59E0B),
-                  ),
+              Text(
+                duration,
+                style: GoogleFonts.notoSansJp(
+                  fontSize: 11,
+                  fontWeight: FontWeight.w600,
+                  color: AppColors.accent,
                 ),
               ),
             ],
           ),
-          
-          const SizedBox(height: 20),
-          
-          // Stats Grid
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: const Color(0xFFF9FAFB),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Wrap(
-              spacing: 16,
-              runSpacing: 16,
-              children: stats.entries.map((entry) {
-                return SizedBox(
-                  width: 100,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        entry.key,
-                        style: GoogleFonts.inter(
-                          fontSize: 11,
-                          color: const Color(0xFF6B7280),
-                        ),
-                      ),
-                      Text(
-                        entry.value,
-                        style: GoogleFonts.inter(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: const Color(0xFF111827),
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              }).toList(),
-            ),
+
+          const SizedBox(height: 18),
+
+          // Stats
+          Wrap(
+            spacing: 24,
+            runSpacing: 14,
+            children: stats.entries.map((entry) {
+              return SizedBox(
+                width: 100,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      entry.key,
+                      style: GoogleFonts.notoSansJp(fontSize: 10.5, color: AppColors.textSecondary),
+                    ),
+                    Text(
+                      entry.value,
+                      style: GoogleFonts.notoSansJp(fontSize: 13, fontWeight: FontWeight.w700, color: AppColors.charcoal),
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
           ),
-          
-          const SizedBox(height: 20),
-          
+
+          const SizedBox(height: 18),
+
           // Description
           Text(
             description,
-            style: GoogleFonts.inter(
-              fontSize: 14,
-              color: const Color(0xFF4B5563),
+            style: GoogleFonts.notoSansJp(
+              fontSize: 12.5,
+              color: AppColors.textSecondary,
               height: 1.6,
             ),
           ),
-          
-          const SizedBox(height: 20),
-          
+
+          const SizedBox(height: 18),
+
           // Itinerary Timeline
           Text(
-            'Expedition Itinerary',
-            style: GoogleFonts.inter(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: const Color(0xFF111827),
+            'EXPEDITION ITINERARY',
+            style: GoogleFonts.notoSansJp(
+              fontSize: 11,
+              fontWeight: FontWeight.w700,
+              color: AppColors.textSecondary,
+              letterSpacing: 0.8,
             ),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 14),
           
           ...itinerary.asMap().entries.map((entry) {
             final colors = [
@@ -2565,54 +2108,44 @@ class _ExpeditionMap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return FlutterMap(
+      options: MapOptions(
+        initialCenter: _route.first,
+        initialZoom: 3.5,
+      ),
       children: [
-        Text('Expedition Route', style: GoogleFonts.inter(fontSize: 18, fontWeight: FontWeight.bold)),
-        const SizedBox(height: 12),
-        SizedBox(
-          height: 320,
-          child: FlutterMap(
-            options: MapOptions(
-              initialCenter: _route.first,
-              initialZoom: 3.5,
+        TileLayer(
+          urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+          subdomains: const ['a', 'b', 'c'],
+          userAgentPackageName: 'com.example.portfolio',
+        ),
+        PolylineLayer(
+          polylines: [
+            Polyline(
+              points: _route,
+              color: AppColors.accent.withOpacity(0.9),
+              strokeWidth: 3.0,
             ),
-            children: [
-              TileLayer(
-                urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-                subdomains: const ['a', 'b', 'c'],
-                userAgentPackageName: 'com.example.portfolio',
-              ),
-              PolylineLayer(
-                polylines: [
-                  Polyline(
-                    points: _route,
-                    color: AppColors.accent.withOpacity(0.9),
-                    strokeWidth: 3.0,
+          ],
+        ),
+        MarkerLayer(
+          markers: _route
+              .map(
+                (p) => Marker(
+                  point: p,
+                  width: 32,
+                  height: 32,
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: AppColors.surface,
+                      border: Border.all(color: AppColors.charcoal, width: 1),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(Icons.place, color: AppColors.accent, size: 16),
                   ),
-                ],
-              ),
-              MarkerLayer(
-                markers: _route
-                    .map(
-                      (p) => Marker(
-                        point: p,
-                        width: 40,
-                        height: 40,
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: AppColors.surface,
-                            border: Border.all(color: AppColors.charcoal, width: 1),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          child: Icon(Icons.place, color: AppColors.accent, size: 20),
-                        ),
-                      ),
-                    )
-                    .toList(),
-              ),
-            ],
-          ),
+                ),
+              )
+              .toList(),
         ),
       ],
     );
